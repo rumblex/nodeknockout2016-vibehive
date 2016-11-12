@@ -27,7 +27,7 @@ export var activeCategoriesReducer = (state = [], action) => {
 }
 
 
-export var activitiesReducer = (state = [], action) => {
+export var vibesReducer = (state = [], action) => {
 	switch(action.type) {
 		case 'LOAD_VIBES':
 			return [
@@ -43,7 +43,7 @@ export var activitiesReducer = (state = [], action) => {
 			return state.filter((activity) => {
 				return activity.id !== action.id;
 			});
-		case: 'UPDATE_VIBE':
+		case 'UPDATE_VIBE':
 			return state;
 		default:
 				return state;
