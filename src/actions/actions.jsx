@@ -86,7 +86,7 @@ export var startLogin = (provider) => {
 			}
 		}
 
-		return firebase.auth().signInWithPopup(getProvider).then((result) => {
+		return firebase.auth().signInWithPopup(getProvider(provider)).then((result) => {
 			console.log('auth worked', result);
 			dispatch(login(result.user.uid));
 		}, (error) => {
