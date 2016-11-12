@@ -2,6 +2,7 @@ import React from 'react'
 import {Route, Router, IndexRoute, hashHistory} from 'react-router'
 import VibeHive from 'VibeHive'
 import CategoriesScreen from 'CategoriesScreen'
+import ActivitiesScreen from 'ActivitiesScreen'
 
 export default (
   <Router history={hashHistory}>
@@ -11,6 +12,7 @@ export default (
       <IndexRoute component={CategoriesScreen} />
         {/*Add Routes here */}
       <Route path="/categories" component={CategoriesScreen} />
+      <Route path="/activities" component={ActivitiesScreen}/>
     </Route>
   </Router>
 )
