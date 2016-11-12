@@ -4,7 +4,7 @@ var CategoriesScreen = React.createClass({
   render: function () {
     return (
       <div className='main-container'>
-        Categories Screen
+        Categories Screenzzzz
       </div>
     )
   }

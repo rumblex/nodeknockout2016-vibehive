@@ -53,6 +53,7 @@ module.exports =  {
       'node_modules',
       './src/components',
       './src/api',
+      
       './src/components/screens',
       './src/components/app'
     ],
