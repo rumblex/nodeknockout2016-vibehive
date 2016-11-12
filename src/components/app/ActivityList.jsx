@@ -31,7 +31,7 @@ export class ActivityList extends Component {
       })
     }
     return(
-      <div>
+      <div className="act-list">
         {renderActivities()}
       </div>
     );

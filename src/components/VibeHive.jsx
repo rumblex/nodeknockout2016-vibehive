@@ -12,7 +12,7 @@ export class VibeHive extends Component {
               <AppMenu className="appmenu">
                 <RadiumLink className="menu-item" to="/categories">Categories</RadiumLink>
               </AppMenu>
-            <div className="top-bar">
+            <div className="top-bar fixed">
             </div>
             {this.props.children}
       </div>
