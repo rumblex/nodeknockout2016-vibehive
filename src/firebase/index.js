@@ -22,7 +22,7 @@ export var firebaseRef = firebase.database().ref();
 export var storageRef = firebase.storage().ref();
 //auth providers
 export var googleProvider = new firebase.auth.GoogleAuthProvider();
-export var githubProvider = new firebase.auth.githubProvider();
+export var githubProvider = new firebase.auth.GithubAuthProvider();
 export var facebookProvider = new firebase.auth.FacebookAuthProvider();
 export var twitterProvider = new firebase.auth.TwitterAuthProvider();
 

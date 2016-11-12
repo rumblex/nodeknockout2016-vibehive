@@ -74,13 +74,15 @@ export var startLogin = (provider) => {
 		var getProvider = (provider) => {
 			switch (provider) {
 				case 'google':
-					return ;
+					return googleProvider;
 				case 'twitter':
-					return 'twitter';
+					return twitterProvider;
 				case 'facebook':
-					return 'facebook';
+					return facebookProvider;
+				case 'github':
+					return githubProvider;
 				default:
-					return 'facebook';
+					return facebookProvider;
 			}
 		}
 
