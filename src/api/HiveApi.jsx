@@ -1,13 +1,13 @@
 import firebase,{firebaseRef, storageRef} from 'src/firebase/'
  //export funcs
  module.exports = {
-   getActiveCategories: (userID) {
+   getActiveCategories: (userID)=> {
 
-   }
-   getCloseActivities:  (userID, userLocation) {
+   },
+   getCloseActivities:  (userID, userLocation)=> {
 
-   }
-   uploadActivityImage: (image, activityID) {
+   },
+   uploadActivityImage:(image, activityID)=> {
      // Create a root reference
       var storageRef = firebase.storage().ref();
 
