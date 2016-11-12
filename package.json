@@ -1,11 +1,13 @@
 {
-  "name": "nko2016-sample",
+  "name": "vibe-hive",
   "version": "0.0.1",
-  "description": "A barebones Node.js app using Express 4",
+  "description": "Find your Vibe around you!",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
+  "author": "Zacck Osiemo",
+  "license":  "MIT",
   "dependencies": {
     "express": "^4.13.3"
   },
