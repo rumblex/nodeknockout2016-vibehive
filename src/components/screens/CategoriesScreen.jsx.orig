@@ -18,7 +18,7 @@ export class CategoriesScreen extends Component {
 	}
 
    render() {
-   	var renderContinue = () =>
+   	var renderContinue = () => 
      { //if empty show message
       if(this.continueEnabled()){
       	return(
@@ -33,21 +33,34 @@ export class CategoriesScreen extends Component {
 
     return (
       <div className='main-container'>
+<<<<<<< HEAD
+      <div className='row'>
+      	<div className='small-10 small-centered columns'>
+      	Pick Your Five Vibes
+      	</div>
+      </div>
+      <div className="row">
+      <div className='small-10 small-centered columns'>
+      	<CategoryGrid />
+      </div>
+      </div>
+=======
 	      <div className='row'>
-	      	<div className='small-10 small-centered columns'>
+	      	<div className='small-8 small-centered columns'>
 	      	Choose Up To Five Vibes
 	      	</div>
 	      </div>
 	      <div className="row">
-		      <div className='small-10 small-centered columns'>
+		      <div className='small-8 small-centered columns'>
 		      	<CategoryGrid />
 		      </div>
 	      </div>
 	      <div className="row">
-			<div className='small-10 small-centered columns'>
+			<div className='small-8 small-centered columns'>
 				{renderContinue()}
 			</div>
 	      </div>
+>>>>>>> a35feadad6845be293dd2ae470eb38412618064a
       </div>
     )
   }
