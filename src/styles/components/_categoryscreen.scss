@@ -2,6 +2,9 @@
   background-color: $grey;
   flex: 1;
   min-height: 100vh;
+  max-width: 100vw;
+  padding-right: 1rem;
+  padding-left: 1rem;
   flex-direction: column;
   display: flex;
   align-items: center;

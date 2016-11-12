@@ -12,12 +12,12 @@ export class CategoriesScreen extends Component {
     return (
       <div className='main-container'>
       <div className='row'>
-      	<div className='small-8 small-centered columns'>
+      	<div className='small-10 small-centered columns'>
       	Pick Your Five Vibes
       	</div>
       </div>
       <div className="row">
-      <div className='small-8 small-centered columns'>
+      <div className='small-10 small-centered columns'>
       	<CategoryGrid />
       </div>
       </div>
