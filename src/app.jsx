@@ -6,7 +6,7 @@ $(document).foundation();
 
 ReactDOM.render(
   <div>
-    <p> Hello world React</p>
+    <p>VibeHive</p>
   </div>,
   document.getElementById('app')
 );
