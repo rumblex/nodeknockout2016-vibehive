@@ -44,7 +44,7 @@ export class CategoriesScreen extends Component {
 		      </div>
 	      </div>
 	      <div className="row">
-			<div className='small-10 small-centered columns'>
+			<div className="continue small-10 small-centered columns">
 				{renderContinue()}
 			</div>
 	      </div>
