@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import ImageResponsive, {Source} from 'react-image-responsive';
 
 export class SelectableCategoryIcon extends Component {
   constructor(props){
@@ -7,6 +8,17 @@ export class SelectableCategoryIcon extends Component {
     this.state = {
       isActive:false
     }
+  }
+
+  getIconPath(){
+    let colour;
+    if(this.state.isActive){
+      colour='yellow';
+    }else{
+      colour='white';
+    }
+    
+    return '/category_icons/ic_categories_hexagon_'+colour+'/ic_'+this.props.category+'_'+colour+'/ic_'+this.props.category+'_'+colour+'_'
   }
 
   toggleActive(){
@@ -20,17 +32,13 @@ export class SelectableCategoryIcon extends Component {
 
 
   render() {
+      let small = this.getIconPath()+'32x32.png'
+      let medium = this.getIconPath()+'72x72.png'
+      let large = this.getIconPath()+'96x96.png'
     //add dispatch to act on touch events
-    var {category, path_white, path_yellow} = this.props;
     return (
       <div>
-        <ImageResponsive type="image" src={path_white} width="50%" height="200px" onClick={this.toggleActive.bind(this)}>
-            <Source src="http://placehold.it/1600x300" maxWidth={1600}/>
-            <Source src="http://placehold.it/300x300"  maxWidth={300}/>
-            <Source src="http://placehold.it/500x300"  maxWidth={500}/>
-            <Source src="http://placehold.it/800x300"  maxWidth={800}/>
-            <Source src="http://placehold.it/1000x300" maxWidth={1000}/>
-        </ImageResponsive>
+        <img src={medium} />
       </div>
     );
   }
