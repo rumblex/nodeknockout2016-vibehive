@@ -6,6 +6,7 @@ export class ActivityForm extends Component {
   constructor(props) {
     super(props);
     this.handleImage = this.handleImage.bind(this);
+    this.submitActivity = this.submitActivity.bind(this);
     this.state = {
       file: null
     };
@@ -15,7 +16,7 @@ export class ActivityForm extends Component {
   }
   handleImage(Event) {
     Event.preventDefault();
-    let file = e.target.files[0];
+    let file = Event.target.files[0];
     this.setState({
         file: file,
     });
@@ -25,7 +26,17 @@ export class ActivityForm extends Component {
     //grab image and hold
     //persist activity\
     var {dispatch} = this.props;
-    var activityTitle
+    var vibeName = this.refs.vibeName.value;
+    var vibeLocation = this.refs.vibeLocation.value;
+    var vibeTime = this.refs.vibeTime.value;
+    var image = this.state.file;
+
+    if(vibeName.length !== 0 && vibeLocation.length !== 0 && vibeTime.length !== 0 && image !== null) {
+      this.refs.vibeName.value = '';
+      this.refs.vibeLocation.value = '';
+      this.refs.vibeTime.value = '';
+      dispatch(actions.startAddVibe(vibeName, vibeLocation, vibeTime, image));
+    }
     //tag image and upload with activity
 
   }
@@ -36,16 +47,15 @@ export class ActivityForm extends Component {
         <p> create a vibe </p>
       </div>
       <div>
-        <form >
+        <form ref="addactivityform" onSubmit={this.submitActivity}>
           <label>VIBE NAME:</label>
-          <input type="text" />
+          <input type="text" ref="vibeName" />
           <label>LOCATION: </label>
-          <input type="text"/>
+          <input type="text" ref="vibeLocation"/>
           <label>TIME:</label>
-          <input type="datetime"/>
-          <input ref="file" type="file" name="file" s className="button upload-file"/>
-          <button className="button"> Upload </button>
-          <button className="button"> CREATE VIBE</button>
+          <input type="datetime" ref="vibeTime"/>
+          <input ref="file" type="file" name="file" onChange={this.handleImage} className="button upload-file"/>
+          <input type="submit" className="button" value="CREATE VIBE"/>
         </form>
       </div>
       </div>

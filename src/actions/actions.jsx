@@ -1,5 +1,5 @@
 //importing firebase we can avoid the filename since its called index :)
-import firebase, {firebaseRef, geoFire, googleProvider, facebookProvider, githubProvider,twitterProvider} from 'src/firebase/';
+import firebase, {firebaseRef, geoFire, googleProvider, facebookProvider, githubProvider,twitterProvider, storageRef} from 'src/firebase/';
 
 //start an asychronous call to load categories from firebase, then add to local state upon request return
 export var startLoadCategories = () => {
@@ -59,6 +59,34 @@ export var StartLoadActivities = () => {
 			dispatch(loadActivities(snapshot.val()));
 		});
 	};
+}
+
+export var addVibe = (vibe) => {
+	return {
+		type: 'ADD_VIBE',
+		vibe
+	};
+}
+
+export var startAddVibe = (name, location, time, image) => {
+	return(dispatch, getState) => {
+		var vibe = {
+			name,
+			location,
+			time
+		}
+
+		var vibeRef = firebaseRef.child('vibes').push(vibe);
+
+		return vibeRef.then(()=> {
+			dispatch(addVibe({
+				...vibe,
+				id: vibeRef.key
+			}));
+			//TODO trigger image upload here
+			var uploadTask = storageRef.child(`${vibeRef.key}.png`).put(image);
+		})
+	}
 }
 
 

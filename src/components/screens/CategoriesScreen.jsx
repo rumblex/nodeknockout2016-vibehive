@@ -39,7 +39,7 @@ export class CategoriesScreen extends Component {
 	      	</div>
 	      </div>
 	      <div className="row">
-		      <div className='small-10 small-centered columns'>
+		      <div className='small-11 small-centered columns'>
 		      	<CategoryGrid />
 		      </div>
 	      </div>
