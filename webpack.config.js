@@ -52,7 +52,9 @@ module.exports =  {
     modulesDirectories:[
       'node_modules',
       './src/components',
-      './src/api'
+      './src/api',
+      './src/components/screens',
+      './src/components/app'
     ],
     alias: {
       src: 'src',
