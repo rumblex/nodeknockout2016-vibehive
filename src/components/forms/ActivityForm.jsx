@@ -23,14 +23,15 @@ export class ActivityForm extends Component {
   submitActivity(Event) {
     Event.preventDefault();
     //grab image and hold
-
-    //persist activity
+    //persist activity\
+    var {dispatch} = this.props;
+    var activityTitle
     //tag image and upload with activity
 
   }
   render() {
     return (
-      <div className="activity-form small-centered small-12">
+      <div className="activity-form small-centered small-12 columns">
       <div>
         <p> create a vibe </p>
       </div>
