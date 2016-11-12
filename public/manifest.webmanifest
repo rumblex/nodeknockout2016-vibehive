@@ -3,8 +3,8 @@
   "short_name": "Vibe",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#FFF",
-  "theme_color": "#FFF",
+  "background_color": "#404241",
+  "theme_color": "#FCE600",
   "description" :"Find Your Groove!",
   "icons": [
     {
