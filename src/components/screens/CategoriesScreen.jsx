@@ -5,6 +5,7 @@ import { startLoadCategories } from 'actions'
 
 export class CategoriesScreen extends Component {
 	componentDidMount() {
+		console.log("FETCHING");
 		this.props.dispatch(startLoadCategories());
 	}
    render() {

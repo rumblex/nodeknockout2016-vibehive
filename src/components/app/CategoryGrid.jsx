@@ -9,13 +9,10 @@ export class CategoryGrid extends Component {
     var renderIcons = () => 
      { //if empty show message
       //if not empty map over reviews and render a review
-      console.log(categories);
+      
       return categories.map((category) => {
-        console.log("THISCAT:"+category);
         return(
-        <div className="column">
-          <SelectableCategoryIcon category="food" />
-        </div>
+          <SelectableCategoryIcon key={category} category={category} />     
         );
       })
     }
