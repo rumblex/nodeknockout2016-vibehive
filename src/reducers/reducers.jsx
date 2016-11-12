@@ -31,7 +31,7 @@ export var activitiesReducer = (state = [], action) => {
 			...state,
 			action.activity
 			];
-		case 'REMOVE_ACTIVITY'
+		case 'REMOVE_ACTIVITY':
 			return state.filter((activity) => {
 				return activity.id !== action.id;
 			});

@@ -5,7 +5,21 @@ import CategoriesScreen from 'CategoriesScreen'
 import ActivitiesScreen from 'ActivitiesScreen'
 
 //middleware for auth
+var requireLogin = (nextState, replace, next) => {
+  //check if user is logged in
+  if(!firebase.auth().currentUser) {
+    replace('/login')
+  }
+  next();
+};
 
+//if logged in
+var redirectLoggedIn = (nextState, replace, next) => {
+  if(firebase.auth().currentUser) {
+    replace('/')
+  }
+  next();
+};
 
 export default (
   <Router history={hashHistory}>

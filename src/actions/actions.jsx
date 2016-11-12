@@ -31,15 +31,15 @@ export var loadActivities = (activities) => {
 
 export var StartLoadActivities = () => {
 	//get list of user activities
-	
+
 
 	//get activities that are close enough
 
 	//that are in the user activities
 
 	return (dispatch, getState) => {
-		firebaseRef.child('activities').once('value'.then((snapshot) => {
-			dispatch(loadActivities(snapshot.val()))
+		firebaseRef.child('activities').once('value').then((snapshot) => {
+			dispatch(loadActivities(snapshot.val()));
 		});
 	}
 }
