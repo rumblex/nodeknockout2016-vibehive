@@ -8,9 +8,8 @@ export class CategoryGrid extends Component {
   render() {
     var {categories} = this.props;
     var renderIcons = () => 
-     { //if empty show message
-      //if not empty map over reviews and render a review
-      
+     { 
+      //render even rows with an offset
       return categories.map((category, index, arr) => {
         if((Math.floor(index/ROW_SIZE)% 2)==0){
           return(
