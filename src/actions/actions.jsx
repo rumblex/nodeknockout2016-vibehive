@@ -39,14 +39,14 @@ export var loadAllCategories = (categories) => {
 	}
 }
 
-export var loadActivities = (activities) => {
+export var loadVibes = (activities) => {
 	return {
-		type:  'LOAD_ACTIVITIES',
+		type:  'LOAD_VIBES',
 		activities
 	};
 }
 
-export var StartLoadActivities = () => {
+export var StartLoadVibes= () => {
 	//get list of user activities
 
 
@@ -55,7 +55,7 @@ export var StartLoadActivities = () => {
 	//that are in the user activities
 
 	return (dispatch, getState) => {
-		firebaseRef.child('activities').once('value').then((snapshot) => {
+		firebaseRef.child('vibes').once('value').then((snapshot) => {
 			dispatch(loadActivities(snapshot.val()));
 		});
 	};
