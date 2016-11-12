@@ -48,7 +48,8 @@
   ],
   "contributors": [
     "Zacck Osiemo <coderv63@gmail.com> (https://github.com/zacck)",
-    "Jacques Crocker <jacques@nodeknockout.com> (https://www.nodeknockout.com)"
+    "Grant Van Hels",
+    "Marike Cronje"
   ],
   "devDependencies": {
     "karma": "^1.3.0",
