@@ -20,6 +20,12 @@ firebase.initializeApp(config);
 //get root ref
 export var firebaseRef = firebase.database().ref();
 export var storageRef = firebase.storage().ref();
+//auth providers
+export var googleProvider = new firebase.auth.GoogleAuthProvider();
+export var githubProvider = new firebase.auth.GithubAuthProvider();
+export var facebookProvider = new firebase.auth.FacebookAuthProvider();
+export var twitterProvider = new firebase.auth.TwitterAuthProvider();
+
 //init GeoFire to store locations
 var locationRef = firebaseRef.child('activitylocations');
 export var geoFire = new GeoFire(locationRef);

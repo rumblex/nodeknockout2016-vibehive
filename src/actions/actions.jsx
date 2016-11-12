@@ -1,5 +1,5 @@
 //importing firebase we can avoid the filename since its called index :)
-import firebase, {firebaseRef, geoFire} from 'src/firebase/';
+import firebase, {firebaseRef, geoFire, googleProvider, facebookProvider, githubProvider,twitterProvider} from 'src/firebase/';
 
 //start an asychronous call to load categories from firebase, then add to local state upon request return
 export var startLoadCategories = () => {
@@ -58,5 +58,56 @@ export var StartLoadActivities = () => {
 		firebaseRef.child('activities').once('value').then((snapshot) => {
 			dispatch(loadActivities(snapshot.val()));
 		});
+	};
+}
+
+
+export var login = (uid) => {
+	return {
+		type: 'LOGIN',
+		uid
+	};
+}
+
+export var startLogin = (provider) => {
+	return(dispatch, state) => {
+		var getProvider = (provider) => {
+			switch (provider) {
+				case 'google':
+					return googleProvider;
+				case 'twitter':
+					return twitterProvider;
+				case 'facebook':
+					return facebookProvider;
+				case 'github':
+					return githubProvider;
+				default:
+					return facebookProvider;
+			}
+		}
+
+		return firebase.auth().signInWithPopup(getProvider(provider)).then((result) => {
+			console.log('auth worked', result);
+			dispatch(login(result.user.uid));
+		}, (error) => {
+			console.log('auth failed', error);
+		});
+	};
+}
+
+
+export var logout  = () => {
+	return {
+		type: 'LOGOUT'
+	};
+}
+
+export var startLogout = () => {
+	return(dispatch, state) => {
+		return firebase.auth().signOut().then(() => {
+			console.log('Logged Out');
+			dispatch(logout());
+		})
+
 	}
 }
