@@ -16,8 +16,13 @@
   background: $grey;
 }
 
+body{
+  background: $grey !important;
+}
+
 //components
 @import "components/appmenu";
 @import "components/activecategories";
 @import "components/activitylist";
 @import "components/activityitem";
+@import "components/categoryscreen"

@@ -7,8 +7,9 @@ export class SelectableCategoryIcon extends Component {
   
   getIconPath(){
     let colour = this.isActive()? 'yellow' : 'white'
-    return '/category_icons/ic_categories_hexagon_'+colour+'/ic_'+'food'+'_'+colour+'/ic_'+'food'+'_'+colour+'_'
-    //return '/category_icons/ic_categories_hexagon_'+colour+'/ic_'+this.props.category+'_'+colour+'/ic_'+this.props.category+'_'+colour+'_'
+    return '/category_icons/ic_categories_hexagon_'
+    +colour+'/ic_'+this.props.category+'_'+colour
+    +'/ic_'+this.props.category+'_'+colour+'_'
   }
 
   //return if this category is one of the currently active categories
@@ -47,17 +48,24 @@ export class SelectableCategoryIcon extends Component {
     return currentMatch != futureMatch;
   }
 
-
   render() {
       let small = this.getIconPath()+'32x32.png'
       let medium = this.getIconPath()+'72x72.png'
       let large = this.getIconPath()+'96x96.png'
-    //add dispatch to act on touch events
-    return (
-      <div>
-        <img src={medium} onClick={this.toggleActive.bind(this)}/>
-      </div>
-    );
+    //offset is for the honeycomb styling
+    if(this.props.offset){
+      return (
+        <div className="column honeycomb">
+          <img src={large} onClick={this.toggleActive.bind(this)}/>
+        </div>
+      );
+    }else{
+      return (
+        <div className="column">
+          <img src={large} onClick={this.toggleActive.bind(this)}/>
+        </div>
+      );
+    }
   }
 }
 
