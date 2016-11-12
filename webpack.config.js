@@ -54,7 +54,8 @@ module.exports =  {
       './src/components',
       './src/api',
       './src/components/screens',
-      './src/components/app'
+      './src/components/app',
+      './src/components/forms'
     ],
     alias: {
       src: 'src',

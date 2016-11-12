@@ -4,6 +4,7 @@ import VibeHive from 'VibeHive'
 import CategoriesScreen from 'CategoriesScreen'
 import ActivitiesScreen from 'ActivitiesScreen'
 import LoginScreen from 'LoginScreen'
+import ActivityForm from 'ActivityForm';
 //middleware for auth
 var requireLogin = (nextState, replace, next) => {
   //check if user is logged in
@@ -31,6 +32,7 @@ export default (
       <Route path="/categories" component={CategoriesScreen} />
       <Route path="/activities" component={ActivitiesScreen}/>
       <Route path="/login" component={LoginScreen}/>
+      <Route path="/addactivity" component={ActivityForm}/>
     </Route>
   </Router>
 )
