@@ -51,16 +51,15 @@ module.exports =  {
     root: __dirname,
     modulesDirectories:[
       'node_modules',
-      './app/components',
-      './app/components/forms',
-      './app/api'
+      './src/components',
+      './src/api'
     ],
     alias: {
-      app: 'app',
-      applicationStyles: 'app/styles/app.scss',
-      actions: 'app/actions/actions.jsx',
-      reducers: 'app/reducers/reducers.jsx',
-      configureStore: 'app/store/configureStore.jsx'
+      src: 'src',
+      applicationStyles: 'src/styles/app.scss',
+      actions: 'src/actions/actions.jsx',
+      reducers: 'src/reducers/reducers.jsx',
+      configureStore: 'src/store/configureStore.jsx'
     },
     //files we want to process
     extensions: ['', '.js', '.jsx']
