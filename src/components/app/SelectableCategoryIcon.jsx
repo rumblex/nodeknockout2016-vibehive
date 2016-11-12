@@ -1,32 +1,50 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import { removeActiveCategory, addActiveCategory } from 'actions'
+const MAX_ACTIVE = 5;
 
 export class SelectableCategoryIcon extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      isActive:false
-    }
-  }
-
+  
   getIconPath(){
-    let colour;
-    if(this.state.isActive){
-      colour='yellow';
-    }else{
-      colour='white';
-    }
-    
-    return '/category_icons/ic_categories_hexagon_'+colour+'/ic_'+this.props.category+'_'+colour+'/ic_'+this.props.category+'_'+colour+'_'
+    let colour = this.isActive()? 'yellow' : 'white'
+    return '/category_icons/ic_categories_hexagon_'+colour+'/ic_'+'food'+'_'+colour+'/ic_'+'food'+'_'+colour+'_'
+    //return '/category_icons/ic_categories_hexagon_'+colour+'/ic_'+this.props.category+'_'+colour+'/ic_'+this.props.category+'_'+colour+'_'
   }
 
+  //return if this category is one of the currently active categories
+  isActive(){
+    let self = this
+    let matchedCategory = this.props.activeCategories.find((category) => {
+      return category == self.props.category;
+    });
+    return matchedCategory? true : false ;
+  }
+
+  //is this icon clickable?
+  isEnabled(){
+    //its always clickable if its one of the active one - to allow it to be deselected
+    return this.isActive()? true : this.props.activeCategories.length < MAX_ACTIVE ;
+  }
+
+  //add this category to the list of active ones, if there is space
   toggleActive(){
-    if(this.state.isActive){
-      this.setState({isActive: false});
-    }else{
-      this.setState({isActive: true});
+    if(this.isEnabled()){
+      this.isActive()? this.props.dispatch(removeActiveCategory(this.props.category)) 
+      : this.props.dispatch(addActiveCategory(this.props.category));
     }
-    console.log(this.state.isActive);
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    let self = this
+    let currentMatch = this.props.activeCategories.find((category) => {
+      return category == self.props.category;
+    });
+
+    let futureMatch = nextProps.activeCategories.find((category) => {
+      return category == self.props.category;
+    });
+    
+    return currentMatch != futureMatch;
   }
 
 
@@ -44,4 +62,6 @@ export class SelectableCategoryIcon extends Component {
 }
 
 
-export default connect()(SelectableCategoryIcon)
+export default connect((state) => {
+  return {activeCategories: state.activeCategories}
+})(SelectableCategoryIcon)

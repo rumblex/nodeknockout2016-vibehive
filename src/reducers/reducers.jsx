@@ -1,23 +1,31 @@
 export var categoriesReducer = (state = [], action) => {
 	switch (action.type) {
-
-		/* REVIEW
-		* A reducer is handed only the piece of state it controls
-		* Hence the categories reducer only works on categories
-		* then all the reducers and their little statedoms are combined
-		* See app/store/configureStore.jsx
-		* We can simply use the object stpread operator ...
-		* to add an object the the reviews
-		*/
-	   case 'LOAD_ALL_CATEGORIES':
+	   	case 'LOAD_ALL_CATEGORIES':
 	      return [
 					...state,
 					...action.categories
 				]
-       default:
+       	default:
           return state
 		  }
 }
+
+export var activeCategoriesReducer = (state = [], action) => {
+	switch (action.type) {
+	   	case 'ADD_ACTIVE_CATEGORY':
+	      return [
+					...state,
+					action.category
+				];
+		case 'REMOVE_ACTIVE_CATEGORY':
+			return state.filter((category) => {
+				return action.category !== category;
+			});
+       	default:
+          return state
+	}
+}
+
 
 export var activitiesReducer = (state = [], action) => {
 	switch(action.type) {

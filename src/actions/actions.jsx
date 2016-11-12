@@ -5,6 +5,7 @@ import firebase, {firebaseRef, geoFire, googleProvider, facebookProvider, github
 export var startLoadCategories = () => {
 	return (dispatch, getState) => {
 
+
     firebaseRef.child('categories').once('value').then((snapshot) =>  {
 	  console.log(snapshot.val());
 	  //add categories to local store
@@ -14,6 +15,22 @@ export var startLoadCategories = () => {
 
   }
 }
+//add active category locally when user taps vibe icon
+export var addActiveCategory = (category) => {
+	return {
+	    type: 'ADD_ACTIVE_CATEGORY',
+	    category
+	}
+}
+
+//remove active category locally when user taps active vibe icon
+export var removeActiveCategory = (category) => {
+	return {
+	    type: 'REMOVE_ACTIVE_CATEGORY',
+	    category
+	}
+}
+
 
 export var loadAllCategories = (categories) => {
 	return {
