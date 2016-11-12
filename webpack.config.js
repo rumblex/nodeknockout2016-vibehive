@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var envFile = require('node-env-file');
+var OfflinePlugin = require('offline-plugin');
 
 //enviroment variable
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -40,7 +41,8 @@ module.exports =  {
         DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
         STORAGE_BUCKET: JSON.stringify(process.env.STORAGE_BUCKET)
       }
-    })
+    }),
+    new OfflinePlugin()
   ],
   output: {
     path: __dirname,
