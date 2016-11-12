@@ -1,5 +1,5 @@
 export var categoriesReducer = (state = [], action) => {
-	console.log("CAT REDUCER: " + action);
+	console.log("CAT REDUCER: " + action.categories);
 	switch (action.type) {
 		
 		/* REVIEW
@@ -13,7 +13,7 @@ export var categoriesReducer = (state = [], action) => {
 	   case 'LOAD_ALL_CATEGORIES':
 	      return [
 					...state,
-					action.categories
+					...action.categories
 				]
        default:
           return state

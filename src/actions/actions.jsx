@@ -6,6 +6,7 @@ export var startLoadCategories = () => {
 	return (dispatch, getState) => {
 
     firebaseRef.child('categories').once('value').then(function(snapshot) {
+	  console.log("SNAPSHOT:");
 	  console.log(snapshot.val());
 	  //add categories to local store
 	  dispatch(loadAllCategories(snapshot.val()));
