@@ -34,6 +34,20 @@ export class SelectableCategoryIcon extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    let self = this
+    let currentMatch = this.props.activeCategories.find((category) => {
+      return category == self.props.category;
+    });
+
+    let futureMatch = nextProps.activeCategories.find((category) => {
+      return category == self.props.category;
+    });
+    
+    return currentMatch != futureMatch;
+  }
+
+
   render() {
       let small = this.getIconPath()+'32x32.png'
       let medium = this.getIconPath()+'72x72.png'
