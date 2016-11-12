@@ -19,6 +19,7 @@ firebase.initializeApp(config);
 
 //get root ref
 export var firebaseRef = firebase.database().ref();
+export var storageRef = firebase.storage().ref();
 //init GeoFire to store locations
 var locationRef = firebaseRef.child('activitylocations');
 export var geoFire = new GeoFire(locationRef);
