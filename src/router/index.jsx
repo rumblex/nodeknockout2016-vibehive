@@ -4,6 +4,9 @@ import VibeHive from 'VibeHive'
 import CategoriesScreen from 'CategoriesScreen'
 import ActivitiesScreen from 'ActivitiesScreen'
 
+//middleware for auth
+
+
 export default (
   <Router history={hashHistory}>
     {/*Main component will always be rendered*/}

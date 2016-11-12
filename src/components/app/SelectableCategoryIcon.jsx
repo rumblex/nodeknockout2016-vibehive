@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import ImageResponsive, {Source} from 'react-image-responsive';
 
 export class SelectableCategoryIcon extends Component {
   constructor(props){
@@ -38,7 +37,7 @@ export class SelectableCategoryIcon extends Component {
     //add dispatch to act on touch events
     return (
       <div>
-        <img src={medium} />
+        <img src={medium} onClick={this.toggleActive.bind(this)}/>
       </div>
     );
   }

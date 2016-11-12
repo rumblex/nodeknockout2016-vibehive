@@ -14,8 +14,8 @@ export class CategoriesScreen extends Component {
       	<div className='small-8 small-centered columns'>
       	Pick Your Five Vibes
       	</div>
-      	<CategoryGrid />
       </div>
+      <CategoryGrid />
       </div>
     )
   }

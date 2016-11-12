@@ -1,5 +1,5 @@
 //importing firebase we can avoid the filename since its called index :)
-import firebase, {firebaseRef, geoFire, storageRef} from 'src/firebase/';
+import firebase, {firebaseRef, geoFire} from 'src/firebase/';
 
 //start an asychronous call to load categories from firebase, then add to local state upon request return
 export var startLoadCategories = () => {
@@ -31,6 +31,7 @@ export var loadActivities = (activities) => {
 
 export var StartLoadActivities = () => {
 	//get list of user activities
+	
 
 	//get activities that are close enough
 
