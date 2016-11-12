@@ -53,7 +53,6 @@ module.exports =  {
       'node_modules',
       './src/components',
       './src/api',
-      
       './src/components/screens',
       './src/components/app'
     ],
@@ -77,7 +76,8 @@ module.exports =  {
         },
         test: /\.jsx?$/, //regex for .jsx extension
         exclude: /(node_modules|bower_components)/ //set up folders to be ignored
-      }
+      },
+      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
     ]
   },
   sassLoader: {

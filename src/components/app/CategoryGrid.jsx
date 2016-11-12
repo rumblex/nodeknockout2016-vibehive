@@ -1,13 +1,16 @@
 import React,{Component} from 'react';
+import SelectableCategoryIcon from 'SelectableCategoryIcon';
 //use destructuring when importing from libs with more than one thing
 import {connect} from 'react-redux'
 
 export class CategoryGrid extends Component {
   render() {
     var {categories} = this.props;
-    console.log(categories);
     return(
-      <div>CATEGORY GRID</div>
+      <div>
+      CATEGORY GRID
+      <SelectableCategoryIcon category="food" />
+      </div>
     )
   }
 }
