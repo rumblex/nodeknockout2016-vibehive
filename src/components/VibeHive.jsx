@@ -11,8 +11,8 @@ let RadiumLink = Radium(Link);
       position: 'fixed',
       width: '36px',
       height: '30px',
-      left: '36px',
-      top: '36px'
+      left: '10px',
+      top: '10px'
     },
     bmBurgerBars: {
       background: '#373a47'
