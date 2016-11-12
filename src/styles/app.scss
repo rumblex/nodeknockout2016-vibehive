@@ -1,0 +1,7 @@
+//import all our consts
+@import "base/variables";
+
+//import foundation stuff
+@import "base/foundation-settings";
+@import "foundation";
+@include foundation-everything;
