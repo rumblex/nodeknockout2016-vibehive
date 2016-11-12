@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import ActiveCategories from 'ActiveCategories'
 import ActivityList from 'ActivityList'
+import BottomBar from 'BottomBar'
 
 export class ActivitiesScreen extends Component {
   render() {
@@ -9,6 +10,7 @@ export class ActivitiesScreen extends Component {
       <div>
         <ActiveCategories/>
         <ActivityList/>
+        <BottomBar/>
       </div>
     );
   }
