@@ -6,6 +6,16 @@
 @import "foundation";
 @include foundation-everything;
 
+//flex grid stuff
+@include foundation-flex-classes;
+@include foundation-flex-grid;
+
+//TODO Move general styles to component
+.top-bar{
+  height: 3rem;
+  background: $grey;
+}
 
 //components
 @import "components/appmenu";
+@import "components/activecategories";

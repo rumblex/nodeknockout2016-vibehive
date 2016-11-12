@@ -8,13 +8,13 @@ let RadiumLink = Radium(Link);
 export class VibeHive extends Component {
   render(){
     return (
-      <div>
-            <AppMenu className="appmenu">
-              <RadiumLink className="menu-item" to="/categories">Categories</RadiumLink>
-            </AppMenu>
-            <div className="row">
-              {this.props.children}
+      <div className="application">
+              <AppMenu className="appmenu">
+                <RadiumLink className="menu-item" to="/categories">Categories</RadiumLink>
+              </AppMenu>
+            <div className="top-bar">
             </div>
+            {this.props.children}
       </div>
     );
   }

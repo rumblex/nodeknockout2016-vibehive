@@ -1,0 +1,16 @@
+.button-bar {
+  height: 4rem;
+  background: $lightgrey;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+.cat-button {
+  height: 2rem;
+  width: 2rem;
+}
