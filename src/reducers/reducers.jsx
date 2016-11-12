@@ -1,7 +1,7 @@
 export var categoriesReducer = (state = [], action) => {
-	console.log("CAT REDUCER: " + action);
+	console.log("CAT REDUCE: " + action);
 	switch (action.type) {
-		
+
 		/* REVIEW
 		* A reducer is handed only the piece of state it controls
 		* Hence the categories reducer only works on categories
@@ -18,4 +18,25 @@ export var categoriesReducer = (state = [], action) => {
        default:
           return state
 		  }
+}
+
+export var activitiesReducer = (state = [], action) => {
+	switch(action.type) {
+		case 'LOAD_ACTIVITIES':
+			return [
+				...state,
+				action.activities
+			];
+		case 'ADD_ACTIVITY':
+		return [
+			...state,
+			action.activity
+			];
+		case 'REMOVE_ACTIVITY'
+			return state.filter((activity) => {
+				return activity.id !== action.id;
+			});
+		default:
+				return state;
+	}
 }
