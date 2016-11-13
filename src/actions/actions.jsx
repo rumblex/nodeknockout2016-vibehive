@@ -39,14 +39,14 @@ export var loadAllCategories = (categories) => {
 	}
 }
 
-export var loadVibes = (activities) => {
+export var loadVibes = (vibes) => {
 	return {
 		type:  'LOAD_VIBES',
-		activities
+		vibes
 	};
 }
 
-export var StartLoadVibes= () => {
+export var StartLoadVibes = () => {
 	//get list of user activities
 
 
@@ -68,7 +68,19 @@ export var addVibe = (vibe) => {
 	};
 }
 
+export var deleteVibe = (vibeKey) => {
+	return {
+		'DELETE_VIBE',
+		vibeKey
+	}
+}
 
+export var startDeleteVibeKey = (vibeKey) => {
+	return(dispatch, getState) => {
+		var updates = {};
+		getState.vibes.forEach((vibe.))
+	}
+}
 
 export var startAddVibe = (name, location, time, image) => {
 	return(dispatch, getState) => {
