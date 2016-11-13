@@ -63,8 +63,8 @@
   ],
   "contributors": [
     "Zacck Osiemo <coderv63@gmail.com> (https://github.com/zacck)",
-    "Grant Van Hels",
-    "Marike Cronje"
+    "Grant Van Hels <gvanhels@gmail.com>",
+    "Marike Cronje <cronjemarike@gmail.com"
   ],
   "devDependencies": {
     "karma": "^0.13.22",
