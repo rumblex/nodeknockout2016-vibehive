@@ -33,9 +33,9 @@ export class CategoriesScreen extends Component {
 		this.props.dispatch(actions.addActiveCategory(category));
 	}
 	removeActiveCategory(category) {
-    	this.props.dispatch(actions.removeActiveCategory(category)) 
+    	this.props.dispatch(actions.removeActiveCategory(category))
     }
-  
+
     //HOW TO OPEN A MODAL:
 	// openModal(){
 	//     modal.add(TagCategoriesOverlay, {
@@ -66,13 +66,13 @@ export class CategoriesScreen extends Component {
     return (
       <div className='main-container'>
 	      <div className='row'>
-	      	<div className='small-12 small-centered columns'>
+	      	<div className=' cat-div small-12 small-centered text-center columns'>
 	      	<p className="cat-choose">CHOOSE UP TO FIVE VIBES</p>
 	      	</div>
 	      </div>
 	      <div className="row">
 		      <div className='small-11 small-centered columns'>
-		      	<CategoryGrid 
+		      	<CategoryGrid
 		      	activeCategories = {activeCategories}
 		      	onAddCategory = {this.addActiveCategory.bind(this)}
 		      	onRemoveCategory = {this.removeActiveCategory.bind(this)}
