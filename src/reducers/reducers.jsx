@@ -39,6 +39,11 @@ export var authReducer = (state = {}, action) => {
 				uid: null,
 				fbKey: null
 			};
+		case 'ADD_USER_VIBE':
+			return [
+				...state.vibes,
+				action.vibeID
+			];
 		default:
 			return state;
 	};
