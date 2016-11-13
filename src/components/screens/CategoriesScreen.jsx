@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import CategoryGrid from 'CategoryGrid';
 import { startLoadCategories } from 'actions'
+import { ModalManager } from 'react-dynamic-modal';
+// import { ModalOverlayScreen } from 'ModalOverlayScreen';
 const MAX_ACTIVE = 5;
 
 export class CategoriesScreen extends Component {
@@ -15,12 +17,16 @@ export class CategoriesScreen extends Component {
 	    return length <= MAX_ACTIVE && length > 0 ;
 	}
 
+	// openModal(){
+	// 	ModalManager.open(<ModalOverlayScreen onRequestClose={() => true} ><LoginScreen /></ModalOverlayScreen>);
+	// }
+
    render() {
    	var renderContinue = () =>
      { //if empty show message
       if(this.continueEnabled()){
       	return(
-			<button type="button" className="success button">Continue</button>
+			<button type="button" className="success button" >Continue</button>
       	);
       }else{
       	return(

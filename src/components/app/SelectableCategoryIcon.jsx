@@ -49,6 +49,7 @@ export class SelectableCategoryIcon extends Component {
   }
 
   render() {
+    console.log(this.props.category);
       let small = this.getIconPath()+'32x32.png'
       let medium = this.getIconPath()+'72x72.png'
       let large = this.getIconPath()+'96x96.png'

@@ -5,6 +5,7 @@ import CategoriesScreen from 'CategoriesScreen'
 import ActivitiesScreen from 'ActivitiesScreen'
 import LoginScreen from 'LoginScreen'
 import ActivityForm from 'ActivityForm';
+import SplashScreen from 'SplashScreen'
 import firebase from 'firebase';
 //middleware for auth
 var requireLogin = (nextState, replace, next) => {
@@ -26,14 +27,17 @@ var redirectLoggedIn = (nextState, replace, next) => {
 export default (
   <Router history={hashHistory}>
     {/*Main component will always be rendered*/}
-    <Route path="/" component={VibeHive}>
+    
+    <Route path="/">
       //default index route takes you to choose your active
-      <IndexRoute component={CategoriesScreen} />
+      <IndexRoute component={SplashScreen} />
         {/*Add Routes here */}
-      <Route path="/categories" component={CategoriesScreen} />
-      <Route path="/activities" component={ActivitiesScreen}/>
-      <Route path="/login" component={LoginScreen}/>
-      <Route path="/addactivity" component={ActivityForm} onEnter={requireLogin}/>
+      <Route path="app" component={VibeHive}>
+        <Route path="categories" component={CategoriesScreen} />
+        <Route path="activities" component={ActivitiesScreen}/>
+        <Route path="login" component={LoginScreen}/>
+        <Route path="addactivity" component={ActivityForm} onEnter={requireLogin}/>
+      </Route>
     </Route>
   </Router>
 )
