@@ -1,11 +1,10 @@
 //importing firebase we can avoid the filename since its called index :)
 import firebase, {firebaseRef, geoFire, googleProvider, facebookProvider, githubProvider,twitterProvider, storageRef} from 'src/firebase/';
 import { hashHistory } from 'react-router'
+import api from 'src/api/HiveApi'
 //start an asychronous call to load categories from firebase, then add to local state upon request return
 export var startLoadCategories = () => {
 	return (dispatch, getState) => {
-
-
     firebaseRef.child('categories').once('value').then((snapshot) =>  {
 	  console.log(snapshot.val());
 	  //add categories to local store
@@ -72,27 +71,32 @@ export var loadVibes = (vibes) => {
 	};
 }
 
-export var StartLoadVibes = () => {
+export var startLoadVibes = (userLocattion) => {
 	return (dispatch, getState) => {
 
 		//get list of user categories
 		var userCategories = getState.activeCategories;
-
 		//get activities that are close enough
-		//find user location
-		if(navigator.geolocation) {
-			navigator.geolocation.getCurrentPostion((position) => {
-				var pos = {
-					lat: position.coords.latitude,
-					lng: position.coords.longitude
-				};
+		var closeVibes = [];
+		//get activities close enough
+		var results = api.getCloseVibes(getState.auth.uid, getState.userLocation);
+		results.on('key_entered', (key, location) => {
+			//get vibe data
+			console.log('close vibe key', key);
+			closeVibes.push(key);
+		},
+		(error) => console.log(error)),
+		{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+
+		if(closeVibes.length !== 0) {
+			closeVibes.forEach((key) => {
+				//that are in the user activities
+				firebaseRef.child(`vibes/${key}`).once('value').then((snapshot) => {
+					console.log(snapshot.val());
+				});
 			})
 		}
-		//that are in the user activities
 
-		firebaseRef.child('vibes').once('value').then((snapshot) => {
-			dispatch(loadActivities(snapshot.val()));
-		});
 	};
 }
 
@@ -119,13 +123,14 @@ export var startDeleteVibeKey = (vibeKey) => {
 	}
 }
 
-export var startAddVibe = (name, location, time, image, tags = []) => {
+export var startAddVibe = (name, location, locArr, time, image, tags = []) => {
 	return(dispatch, getState) => {
 		//since we need a user ID
 		var user = getState().auth;
 		var vibe = {
 			name,
-			time
+			time,
+			location
 		}
 		var vibeKey = firebaseRef.child('vibes').push().key;
 

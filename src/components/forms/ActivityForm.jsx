@@ -84,7 +84,7 @@ export class ActivityForm extends Component {
       locArr = [loc.lat, loc.lng];
 
       if(vibeName.length !== 0 && locArr.length !== 0 && vibeTime.length !== 0 && image !== null) {
-        this.openTagModal(vibeName, locArr, vibeTime, image);
+        this.openTagModal(vibeName, vibeLocation, locArr, vibeTime, image);
       }
       //tag image and upload with activity
     })
