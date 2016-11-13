@@ -9,9 +9,7 @@ export default class SearchBox extends Component {
   }
   render() {
     return (
-      <div>
-        <input className="search-box" ref="input" {...this.props} type="text"/>
-      </div>
+        <input className="searchbox" ref="input" {...this.props} type="text"/>
     );
   }
   onPlacesChanged = () => {
