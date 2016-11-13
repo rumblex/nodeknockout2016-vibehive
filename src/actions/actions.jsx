@@ -49,22 +49,31 @@ export var loadAllCategories = (categories) => {
 	}
 }
 
-export var loadVibes = (activities) => {
+export var loadVibes = (vibes) => {
 	return {
 		type:  'LOAD_VIBES',
-		activities
+		vibes
 	};
 }
 
-export var StartLoadVibes= () => {
-	//get list of user activities
-
-
-	//get activities that are close enough
-
-	//that are in the user activities
-
+export var StartLoadVibes = () => {
 	return (dispatch, getState) => {
+
+		//get list of user categories
+		var userCategories = getState.activeCategories;
+
+		//get activities that are close enough
+		//find user location
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPostion((position) => {
+				var pos = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
+			})
+		}
+		//that are in the user activities
+
 		firebaseRef.child('vibes').once('value').then((snapshot) => {
 			dispatch(loadActivities(snapshot.val()));
 		});
@@ -78,32 +87,41 @@ export var addVibe = (vibe) => {
 	};
 }
 
+export var deleteVibe = (vibeKey) => {
+	return {
+		type:'DELETE_VIBE',
+		vibeKey
+	}
+}
+
+export var startDeleteVibeKey = (vibeKey) => {
+	return(dispatch, getState) => {
+		var updates = {};
+		getState.vibes.forEach(() => {
+			
+		})
+	}
+}
+
 export var startAddVibe = (name, location, time, image) => {
 	return(dispatch, getState) => {
 		//since we need a user ID
 		var user = getState().auth;
-
-
 		var vibe = {
 			name,
 			location,
-			time,
-			vibeOwner: uid,
+			time
 		}
-		var vibeRef = firebaseRef.child('vibes').push(vibe);
-		return vibeRef.then(()=> {
-			dispatch(addVibe({
-				...vibe,
-				id: vibeRef.key
-			}));
-			//TODO trigger image upload here
-			var uploadTask = storageRef.child(`${vibeRef.key}.png`).put(image);
-			//lets associate a user with an activity
-			var userRef = firebaseRef.child(`users/${user.fbKey}/vibes`).push(vibeRef.key);
-			userRef.then(() => {
-				console.log('pushed user vibe assoc');
-			});
-		})
+		var vibeKey = firebaseRef.child('vibes').push().key;
+
+		var vibeFanout = {};
+
+		vibeFanout[`/vibes/${vibeKey}`] = vibe;
+		vibeFanout[`/user-vibes/${user.uid}/${vibeKey}`] = vibe;
+
+		//run fanout
+		return firebaseRef.update(vibeFanout)
+
 	}
 }
 
@@ -114,6 +132,14 @@ export var login = (user) => {
 		user
 	};
 }
+
+export var addUserVibe = (vibeID) => {
+	return {
+		type: 'ADD_USER_VIBE',
+		vibeID
+	}
+}
+
 
 export var awaitLogin = (user) => {
 	return {
@@ -166,12 +192,12 @@ export var startLogin = (provider) => {
 			}
 		}
 
-		return firebase.auth().linkWithPopup(getProvider(provider)).then((result) => {
+		return firebase.auth().signInWithPopup(getProvider(provider)).then((result) => {
 			var user = getState.auth;
 				dispatch(login({
 					...user,
 					...result
-				})); 
+				}));
 
 
 		}, (error) => {
