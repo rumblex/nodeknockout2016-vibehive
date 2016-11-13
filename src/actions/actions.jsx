@@ -41,6 +41,22 @@ export var removeActiveCategory = (category) => {
 	}
 }
 
+//add tag to temp state locally when user is tagging their vibe
+export var addTag = (category) => {
+	return {
+	    type: 'ADD_TAG',
+	    category
+	}
+}
+
+//remove active category locally when user taps active vibe icon
+export var removeTag = (category) => {
+	return {
+	    type: 'REMOVE_TAG',
+	    category
+	}
+}
+
 
 export var loadAllCategories = (categories) => {
 	return {
@@ -219,6 +235,31 @@ export var startLogout = () => {
 			console.log('Logged Out');
 			dispatch(logout());
 		})
+
+	}
+}
+
+//chat actions
+
+//add a chat message to the vibe's chatroom
+export var startAddChat = (message, vibe) => {
+	return(dispatch, getState) => {
+		//since we need a user ID
+		var user = getState().auth;
+		var vibe = {
+			name,
+			location,
+			time
+		}
+		var vibeKey = firebaseRef.child('vibes').push().key;
+
+		var vibeFanout = {};
+
+		vibeFanout[`/vibes/${vibeKey}`] = vibe;
+		vibeFanout[`/user-vibes/${user.uid}/${vibeKey}`] = vibe;
+
+		//run fanout
+		return firebaseRef.update(vibeFanout)
 
 	}
 }

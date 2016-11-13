@@ -7,6 +7,7 @@ import LoginScreen from 'LoginScreen'
 import ActivityForm from 'ActivityForm';
 import SplashScreen from 'SplashScreen'
 import firebase from 'firebase';
+import ReduxModal from 'react-redux-modal'
 //middleware for auth
 var requireLogin = (nextState, replace, next) => {
   //check if user is logged in
@@ -25,6 +26,7 @@ var redirectLoggedIn = (nextState, replace, next) => {
 };
 
 export default (
+  <div>
   <Router history={hashHistory}>
     {/*Main component will always be rendered*/}
     
@@ -40,4 +42,7 @@ export default (
       </Route>
     </Route>
   </Router>
+  <ReduxModal />
+  </div>
+
 )

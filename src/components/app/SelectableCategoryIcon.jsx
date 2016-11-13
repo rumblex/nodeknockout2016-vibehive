@@ -15,7 +15,7 @@ export class SelectableCategoryIcon extends Component {
   //return if this category is one of the currently active categories
   isActive(){
     let self = this
-    let matchedCategory = this.props.activeCategories.find((category) => {
+    let matchedCategory = this.props.currentlyActive.find((category) => {
       return category == self.props.category;
     });
     return matchedCategory? true : false ;
@@ -24,24 +24,25 @@ export class SelectableCategoryIcon extends Component {
   //is this icon clickable?
   isEnabled(){
     //its always clickable if its one of the active one - to allow it to be deselected
-    return this.isActive()? true : this.props.activeCategories.length < MAX_ACTIVE ;
+    return this.isActive()? true : this.props.currentlyActive.length < MAX_ACTIVE ;
   }
 
-  //add this category to the list of active ones, if there is space
+  //call the onAdd/Remove Category functions passed in as props
   toggleActive(){
     if(this.isEnabled()){
-      this.isActive()? this.props.dispatch(removeActiveCategory(this.props.category)) 
-      : this.props.dispatch(addActiveCategory(this.props.category));
+      this.isActive()? this.props.onRemoveCategory(this.props.category) 
+      : this.props.onAddCategory(this.props.category);
     }
   }
 
+//this prevents icons from rerendering when they haven't been clicked - (currentlyActive changing tries to trigger render)
   shouldComponentUpdate(nextProps, nextState){
     let self = this
-    let currentMatch = this.props.activeCategories.find((category) => {
+    let currentMatch = this.props.currentlyActive.find((category) => {
       return category == self.props.category;
     });
 
-    let futureMatch = nextProps.activeCategories.find((category) => {
+    let futureMatch = nextProps.currentlyActive.find((category) => {
       return category == self.props.category;
     });
     
@@ -71,6 +72,4 @@ export class SelectableCategoryIcon extends Component {
 }
 
 
-export default connect((state) => {
-  return {activeCategories: state.activeCategories}
-})(SelectableCategoryIcon)
+export default connect()(SelectableCategoryIcon)

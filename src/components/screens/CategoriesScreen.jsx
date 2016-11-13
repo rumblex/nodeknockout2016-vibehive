@@ -3,6 +3,10 @@ import {connect} from 'react-redux'
 import CategoryGrid from 'CategoryGrid'
 import * as actions from 'actions'
 import { hashHistory } from 'react-router'
+//import TagCategoriesOverlay from 'TagCategoriesOverlay';
+
+//required for modal
+//import {modal} from 'react-redux-modal'
 const MAX_ACTIVE = 5;
 
 export class CategoriesScreen extends Component {
@@ -23,11 +27,29 @@ export class CategoriesScreen extends Component {
 	    return length <= MAX_ACTIVE && length > 0 ;
 	}
 
+
+	//functions to pass as props to category grid
+	addActiveCategory(category) {
+		this.props.dispatch(actions.addActiveCategory(category));
+	}
+	removeActiveCategory(category) {
+    	this.props.dispatch(actions.removeActiveCategory(category)) 
+    }
+  
+    //HOW TO OPEN A MODAL:
 	// openModal(){
-	// 	ModalManager.open(<ModalOverlayScreen onRequestClose={() => true} ><LoginScreen /></ModalOverlayScreen>);
+	//     modal.add(TagCategoriesOverlay, {
+	//       title: '',
+	//       size: 'medium', // large, medium or small,
+	//       closeOnOutsideClick: true, // (optional) Switch to true if you want to close the modal by clicking outside of it,
+	//       hideTitleBar: true, // (optional) Switch to true if do not want the default title bar and close button,
+	//       hideCloseButton: true, // (optional) if you don't wanna show the top right close button
+	//       //.. all what you put in here you will get access in the modal props ;)
+	//     });
 	// }
 
    render() {
+   	let {activeCategories} = this.props;
    	var renderContinue = () =>
      { //if empty show message
       if(this.continueEnabled()){
@@ -50,7 +72,11 @@ export class CategoriesScreen extends Component {
 	      </div>
 	      <div className="row">
 		      <div className='small-11 small-centered columns'>
-		      	<CategoryGrid />
+		      	<CategoryGrid 
+		      	activeCategories = {activeCategories}
+		      	onAddCategory = {this.addActiveCategory.bind(this)}
+		      	onRemoveCategory = {this.removeActiveCategory.bind(this)}
+		      	/>
 		      </div>
 	      </div>
 	      <div className="row">
@@ -64,5 +90,5 @@ export class CategoriesScreen extends Component {
 }
 
 export default connect((state) => {
-  return {categories: state.categories, activeCategories: state.activeCategories, isPreloaded: state.isPreloaded}
+  return {activeCategories: state.activeCategories, isPreloaded: state.isPreloaded}
 })(CategoriesScreen);

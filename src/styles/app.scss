@@ -16,6 +16,10 @@
   background: $grey;
 }
 
+.translucent-component{
+	background-color: rgba(64,66,65,0.5) !important;
+}
+
 
 //components
 @import "components/appmenu";
@@ -24,3 +28,4 @@
 @import "components/activityitem";
 @import "components/categoryscreen";
 @import "components/loginscreen";
+@import "components/modal"

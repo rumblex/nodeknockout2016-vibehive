@@ -36,6 +36,25 @@ export var activeCategoriesReducer = (state = [], action) => {
 	}
 }
 
+//reducer for tag selection when creating a vibe
+export var activeTagsReducer = (state = [], action) => {
+	switch (action.type) {
+	   	case 'ADD_TAG':
+	      return [
+					...state,
+					action.category
+				];
+		case 'REMOVE_TAG':
+			return state.filter((category) => {
+				return action.category !== category;
+			});
+		case 'CLEAR_TAGS':
+			return [];
+       	default:
+          return state
+	}
+}
+
 export var authReducer = (state = {}, action) => {
 	switch(action.type) {
 		case 'AWAITING_LOGIN':
