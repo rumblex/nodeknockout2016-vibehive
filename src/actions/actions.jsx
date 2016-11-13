@@ -114,12 +114,12 @@ export var startDeleteVibeKey = (vibeKey) => {
 	return(dispatch, getState) => {
 		var updates = {};
 		getState.vibes.forEach(() => {
-			
+
 		})
 	}
 }
 
-export var startAddVibe = (name, location, time, image) => {
+export var startAddVibe = (name, location, time, image, tags = [0: "outdoor", 1:"music"]) => {
 	return(dispatch, getState) => {
 		//since we need a user ID
 		var user = getState().auth;
@@ -133,10 +133,20 @@ export var startAddVibe = (name, location, time, image) => {
 		var vibeFanout = {};
 
 		vibeFanout[`/vibes/${vibeKey}`] = vibe;
-		vibeFanout[`/user-vibes/${user.uid}/${vibeKey}`] = vibe;
+		vibeFanout[`/user-vibes/${user.uid}/${vibeKey}`] = vibeKey;
+		tags.forEach((cat) => {
+			vibeFanout[`/tag-vibes/${cat}/${vibeKey}`] = vibeKey;
+		})
 
 		//run fanout
-		return firebaseRef.update(vibeFanout)
+		return firebaseRef.update(vibeFanout).then(() => {
+			dispatch(addVibe({
+				...vibe,
+				vibeKey
+			}));
+		})
+
+
 
 	}
 }
