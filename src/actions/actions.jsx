@@ -68,12 +68,12 @@ export var addVibe = (vibe) => {
 	};
 }
 
+
+
 export var startAddVibe = (name, location, time, image) => {
 	return(dispatch, getState) => {
 		//since we need a user ID
 		var user = getState().auth;
-
-
 		var vibe = {
 			name,
 			location,
