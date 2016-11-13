@@ -30,6 +30,9 @@ export class TagCategoriesOverlay extends Component {
 			this.props.vibeTime, 
 			this.props.image, 
 			this.props.activeTags));
+		console.log('transitioning');
+		hashHistory.push('/app/activities');
+		this.removeThisModal();
 	}
 
 	//functions to pass as props to category grid

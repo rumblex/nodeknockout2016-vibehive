@@ -1,6 +1,6 @@
 //importing firebase we can avoid the filename since its called index :)
 import firebase, {firebaseRef, geoFire, googleProvider, facebookProvider, githubProvider,twitterProvider, storageRef} from 'src/firebase/';
-
+import { hashHistory } from 'react-router'
 //start an asychronous call to load categories from firebase, then add to local state upon request return
 export var startLoadCategories = () => {
 	return (dispatch, getState) => {
@@ -122,7 +122,6 @@ export var startDeleteVibeKey = (vibeKey) => {
 export var startAddVibe = (name, location, time, image, tags = []) => {
 	return(dispatch, getState) => {
 		//since we need a user ID
-		debugger
 		var user = getState().auth;
 		var vibe = {
 			name,
