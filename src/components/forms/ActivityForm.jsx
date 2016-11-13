@@ -9,7 +9,7 @@ import {geoFire} from 'src/firebase/'
 import TagCategoriesOverlay from 'TagCategoriesOverlay';
 import {modal} from 'react-redux-modal'
 import { hashHistory } from 'react-router'
-
+import moment from 'moment'
 
 export class ActivityForm extends Component {
   componentWillMount() {
@@ -97,10 +97,11 @@ export class ActivityForm extends Component {
   }
   render() {
     return (
-      <div className="activity-form small-centered small-12 columns">
       <div>
-        <p> create a vibe </p>
+      <div className="grey-row">
+        <p> CREATE A VIBE </p>
       </div>
+      <div className="activity-form small-centered small-12 columns">
       <div>
         <form ref="addactivityform" onSubmit={this.submitActivity}>
           <label>VIBE NAME:</label>
@@ -108,10 +109,12 @@ export class ActivityForm extends Component {
           <label>LOCATION: </label>
           <input className="searchbox" ref="vibeLocation" onPlacesChanged={this.onPlacesChanged} type="text"/>
           <label>TIME:</label>
-          <input type="datetime" ref="vibeTime"/>
-          <input ref="file" type="file" name="file" onChange={this.handleImage} className="button upload-file"/>
-          <input type="submit" className="button" value="NEXT"/>
+          <input type="text" ref="vibeTime" />
+          <input ref="file" type="file" name="file" onChange={this.handleImage} className="button yellow-button upload-file"/>
+          <input type="submit" className="button yellow-button" value="NEXT"/>
+
         </form>
+      </div>
       </div>
       </div>
     )
