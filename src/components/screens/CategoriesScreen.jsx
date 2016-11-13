@@ -13,10 +13,7 @@ export class CategoriesScreen extends Component {
 	}
 	    //is this icon clickable?
 	continueEnabled(){
-		var {dispatch, activeCategories} = this.props;
-		let length = activeCategories.length;
-		console.log(activeCategories.length);
-		console.log(length < MAX_ACTIVE || length > 0);
+		let length = this.props.activeCategories.length;
 	    return length <= MAX_ACTIVE && length > 0 ;
 	}
 
