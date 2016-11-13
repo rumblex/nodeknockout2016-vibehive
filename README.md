@@ -1,6 +1,4 @@
-# Node Knockout 2016 Starter
-
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+A Node.js for finding Your vibe around you  app using [Express ](http://expressjs.com/).
 
 Tuned to run on EngineYard Cloud.
 
@@ -15,7 +13,7 @@ npm install
 npm start
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+Your app should now be running on [localhost:3000](http://localhost:3000/).
 
 ## Deploying to EngineYard
 
