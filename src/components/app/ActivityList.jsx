@@ -20,27 +20,14 @@ export class ActivityList extends Component {
       )
   }
   render(){
-    var renderActivities = () =>{
-      var acts =  [
-        {
-          id: 1
-        },
-        {
-          id: 2
-        },
-        {
-          id: 3
-        },
-        {
-          id: 4
-        }
-      ];
-      if(acts.length === 0) {
+    var {dispatch, vibes} = this.props;
+    var renderActivities = () => {
+      if(vibes.length === 0) {
         return(
           <p> No activities Yet</p>
         );
       }
-      return acts.map((act) => {
+      return vibes.map((act) => {
         return(
           <ActivityItem key={act.id} {...act}/>
         );
@@ -54,4 +41,8 @@ export class ActivityList extends Component {
   }
 }
 
-export default connect()(ActivityList);
+export default connect((state) => {
+  return {
+    vibes: state.vibes
+  };
+})(ActivityList);

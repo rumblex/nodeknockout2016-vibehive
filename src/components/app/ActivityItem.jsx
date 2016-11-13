@@ -1,19 +1,23 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {storageRef} from 'firebase'
 
 export class ActivityItem extends Component {
   render() {
+    var {dispatch, time, key, location, name} = this.props;
+    //build  Image link
+    
     return (
       <div className="activity-item">
           <div>
             <div>
-              <span className="activity-time"> 6AM, 24 Nov</span>
+              <span className="activity-time">{time}</span>
             </div>
             <div>
-              <span className="activity-title"> Hike Lion's Head</span>
+              <span className="activity-title">{name}</span>
             </div>
             <div>
-              <span  className="locale-title"> Cape Town </span>
+              <span  className="locale-title">{location}</span>
             </div>
           </div>
           <div className="row">
