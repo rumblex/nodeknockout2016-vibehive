@@ -125,18 +125,26 @@ export var startAddVibe = (name, location, time, image, tags = [0: "outdoor", 1:
 		var user = getState().auth;
 		var vibe = {
 			name,
-			location,
 			time
 		}
 		var vibeKey = firebaseRef.child('vibes').push().key;
+
+
 
 		var vibeFanout = {};
 
 		vibeFanout[`/vibes/${vibeKey}`] = vibe;
 		vibeFanout[`/user-vibes/${user.uid}/${vibeKey}`] = vibeKey;
+
 		tags.forEach((cat) => {
 			vibeFanout[`/tag-vibes/${cat}/${vibeKey}`] = vibeKey;
 		})
+
+		geoFire.set(vibeKey, location).then(
+			() => {
+				console.log('save geo');
+			}
+		);
 
 		//run fanout
 		return firebaseRef.update(vibeFanout).then(() => {

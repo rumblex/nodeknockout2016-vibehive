@@ -51,24 +51,30 @@ export class ActivityForm extends Component {
     var vibeTime = this.refs.vibeTime.value;
     var image = this.state.file;
     var vibeLocation = this.refs.vibeLocation.value;
+    var locArr = [];
 
     //lets geocode our address
     var address = `https://maps.googleapis.com/maps/api/geocode/json?address=${vibeLocation}&key=AIzaSyD8oJEU01e30XplGKVXpxfPMHvP2NrittE`;
     axios.get(address).then((response) => {
-      console.log('res',response.data.results[0].geometry.location);
+      var loc = response.data.results[0].geometry.location
+      console.log('res',loc);
       //get Geofire to keep our location
+      locArr = [loc.lat, loc.lng];
+
+      if(vibeName.length !== 0 && locArr.length !== 0 && vibeTime.length !== 0 && image !== null) {
+        this.refs.vibeName.value = '';
+        this.refs.vibeLocation.value = '';
+        this.refs.vibeTime.value = '';
+        var tags = [0: "outdoor", 1:"music"];
+        dispatch(actions.startAddVibe(vibeName, locArr, vibeTime, image, tags));
+      }
+      //tag image and upload with activity
     })
     .catch((error) => {
       console.log(error);
     })
 
-    if(vibeName.length !== 0 && vibeLocation.length !== 0 && vibeTime.length !== 0 && image !== null) {
-      this.refs.vibeName.value = '';
-      this.refs.vibeLocation.value = '';
-      this.refs.vibeTime.value = '';
-      dispatch(actions.startAddVibe(vibeName, vibeLocation, vibeTime, image));
-    }
-    //tag image and upload with activity
+
 
   }
   render() {
