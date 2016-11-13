@@ -103,7 +103,7 @@ export var startDeleteVibeKey = (vibeKey) => {
 	}
 }
 
-export var startAddVibe = (name, location, time, image) => {
+export var startAddVibe = (name, location, time, image, tags = [0: "outdoor", 1:"music"]) => {
 	return(dispatch, getState) => {
 		//since we need a user ID
 		var user = getState().auth;
@@ -118,7 +118,7 @@ export var startAddVibe = (name, location, time, image) => {
 
 		vibeFanout[`/vibes/${vibeKey}`] = vibe;
 		vibeFanout[`/user-vibes/${user.uid}/${vibeKey}`] = vibeKey;
-		getState().categories.forEach((cat) => {
+		tags.forEach((cat) => {
 			vibeFanout[`/tag-vibes/${cat}/${vibeKey}`] = vibeKey;
 		})
 
