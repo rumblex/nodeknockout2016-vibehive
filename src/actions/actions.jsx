@@ -10,10 +10,20 @@ export var startLoadCategories = () => {
 	  console.log(snapshot.val());
 	  //add categories to local store
 	  dispatch(loadAllCategories(snapshot.val()));
+	  dispatch(confirmPreloaded("LOADED"));
 	});
 
 
   }
+}
+
+//trigger this activity when all data that needs to be loaded on app launch is loaded
+export var confirmPreloaded = (isPreloaded) => {
+	console.log("returning isproloaded action" + isPreloaded);
+	return {
+		type: 'CONFIRM_PRELOADED',
+		isPreloaded
+	}
 }
 //add active category locally when user taps vibe icon
 export var addActiveCategory = (category) => {

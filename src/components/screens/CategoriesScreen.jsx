@@ -2,15 +2,21 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import CategoryGrid from 'CategoryGrid'
 import * as actions from 'actions'
+import { hashHistory } from 'react-router'
 const MAX_ACTIVE = 5;
 
 export class CategoriesScreen extends Component {
-	componentDidMount() {
-		var {dispatch, activeCategories} = this.props;
-		dispatch(actions.startAuth());
-		console.log("FETCHING");
-		dispatch(actions.startLoadCategories());
+
+	componentWillMount() {
+		this.props.isPreloaded == "NOT_LOADED" ? hashHistory.push('/') : null;
 	}
+    
+	// componentDidMount() {
+	// 	var {dispatch, activeCategories} = this.props;
+	// 	dispatch(actions.startAuth());
+	// 	console.log("FETCHING");
+	// 	dispatch(actions.startLoadCategories());
+	// }
 	    //is this icon clickable?
 	continueEnabled(){
 		let length = this.props.activeCategories.length;
@@ -26,11 +32,11 @@ export class CategoriesScreen extends Component {
      { //if empty show message
       if(this.continueEnabled()){
       	return(
-			<button type="button" className="success button" >Continue</button>
+			<button type="button" className="continue-button button" >CONTINUE</button>
       	);
       }else{
       	return(
-			<button type="button" className="success button" disabled>Continue</button>
+			<button type="button" className="continue-button button" disabled>CONTINUE</button>
 		);
       }
     }
@@ -58,5 +64,5 @@ export class CategoriesScreen extends Component {
 }
 
 export default connect((state) => {
-  return {categories: state.categories, activeCategories: state.activeCategories}
+  return {categories: state.categories, activeCategories: state.activeCategories, isPreloaded: state.isPreloaded}
 })(CategoriesScreen);

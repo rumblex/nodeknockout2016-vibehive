@@ -10,6 +10,16 @@ export var categoriesReducer = (state = [], action) => {
 		  }
 }
 
+export var preLoadedReducer = ( state = 'NOT_LOADED', action) => {
+	console.log("preloaded")
+	switch (action.type) {
+		case 'CONFIRM_PRELOADED':
+			return action.isPreloaded
+		default:
+			return state
+	}
+}
+
 export var activeCategoriesReducer = (state = [], action) => {
 	switch (action.type) {
 	   	case 'ADD_ACTIVE_CATEGORY':
