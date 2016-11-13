@@ -71,7 +71,7 @@ export var loadVibes = (vibes) => {
 	};
 }
 
-export var startLoadVibes = (userLocattion) => {
+export var startLoadVibes = (userLocation) => {
 	return (dispatch, getState) => {
 
 		//get list of user categories
@@ -79,24 +79,17 @@ export var startLoadVibes = (userLocattion) => {
 		//get activities that are close enough
 		var closeVibes = [];
 		//get activities close enough
-		var results = api.getCloseVibes(getState.auth.uid, getState.userLocation);
+		var results = api.getCloseVibes(1, userLocation);
 		results.on('key_entered', (key, location) => {
 			//get vibe data
 			console.log('close vibe key', key);
-			closeVibes.push(key);
+			return firebaseRef.child(`vibes/${key}`).once('value').then((snapshot) => {
+				console.log(snapshot.val());
+			})
+
 		},
 		(error) => console.log(error)),
 		{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-
-		if(closeVibes.length !== 0) {
-			closeVibes.forEach((key) => {
-				//that are in the user activities
-				firebaseRef.child(`vibes/${key}`).once('value').then((snapshot) => {
-					console.log(snapshot.val());
-				});
-			})
-		}
-
 	};
 }
 
@@ -143,6 +136,7 @@ export var startAddVibe = (name, location, locArr, time, image, tags = []) => {
 
 		tags.forEach((cat) => {
 			vibeFanout[`/tag-vibes/${cat}/${vibeKey}`] = vibeKey;
+			vibeFanout[`/vibe-tags/${vibeKey}/${cat}`] = cat;
 		})
 
 		//STORE

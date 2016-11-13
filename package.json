@@ -8,7 +8,7 @@
     "build": "webpack",
     "start": " npm run build && node server.js"
   },
-  "author": "Mark Pundsack",
+  "author": "Zacck Osiemo",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.2",

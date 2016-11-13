@@ -6,9 +6,15 @@ export class ActivityItem extends Component {
     return (
       <div className="activity-item">
           <div>
-            <p className="activity-time"> 6AM, 24 Nov</p>
-            <p className="acticity-title"> Hike Lion's Head </p>
-            <p className="locale-title"> Cape Town </p>
+            <div>
+              <span className="activity-time"> 6AM, 24 Nov</span>
+            </div>
+            <div>
+              <span className="activity-title"> Hike Lion's Head</span>
+            </div>
+            <div>
+              <span  className="locale-title"> Cape Town </span>
+            </div>
           </div>
           <div className="row">
             <div className="columns small-6 medium-6 large-6 chat-col">
