@@ -79,7 +79,7 @@ export var addVibe = (vibe) => {
 
 export var deleteVibe = (vibeKey) => {
 	return {
-		'DELETE_VIBE',
+		type:'DELETE_VIBE',
 		vibeKey
 	}
 }
@@ -87,7 +87,9 @@ export var deleteVibe = (vibeKey) => {
 export var startDeleteVibeKey = (vibeKey) => {
 	return(dispatch, getState) => {
 		var updates = {};
-		getState.vibes.forEach((vibe.))
+		getState.vibes.forEach(() => {
+			
+		})
 	}
 }
 
