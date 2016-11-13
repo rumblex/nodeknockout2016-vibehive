@@ -62,7 +62,6 @@ export var StartLoadVibes = () => {
 				};
 			})
 		}
-
 		//that are in the user activities
 
 		firebaseRef.child('vibes').once('value').then((snapshot) => {
