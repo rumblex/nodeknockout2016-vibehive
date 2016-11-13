@@ -13,7 +13,6 @@ export class VibeHive extends Component {
                 <RadiumLink className="menu-item white-menu" to="/app/categories">Select Categories</RadiumLink>
                 <RadiumLink className="menu-item white-menu" to="/app/activities">Vibes</RadiumLink>
                 <RadiumLink className="menu-item white-menu" to="/app/addactivity">Create Vibe</RadiumLink>
-           
               </AppMenu>
             <div className="top-bar fixed">
          

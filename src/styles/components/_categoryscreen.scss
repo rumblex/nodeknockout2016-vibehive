@@ -10,10 +10,14 @@
   align-items: center;
   justify-content: center;
 }
+.cat-div {
+  justify-content: center;
+  align-items: center;
+}
 
 .honeycomb {
--webkit-transform:  translate(40%, 20%);
-transform: translate(40%, 20%);
+  -webkit-transform:  translate(40%, 20%);
+  transform: translate(40%, 20%);
 }
 
 .continue {
