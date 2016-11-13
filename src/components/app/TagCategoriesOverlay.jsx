@@ -24,6 +24,13 @@ export class TagCategoriesOverlay extends Component {
 	    this.props.removeModal();
 	}
 
+	createVibe(){
+		this.props.dispatch(actions.startAddVibe(this.props.vibeName, 
+			this.props.locArr, 
+			this.props.vibeTime, 
+			this.props.image, 
+			this.props.activeTags));
+	}
 
 	//functions to pass as props to category grid
 	addTag(category) {
@@ -39,7 +46,7 @@ export class TagCategoriesOverlay extends Component {
      { //if empty show message
       if(this.continueEnabled()){
       	return(
-			<button type="button" className="continue-button button" >FINISH</button>
+			<button type="button" className="continue-button button" onClick={this.createVibe.bind(this)} >FINISH</button>
       	);
       }else{
       	return(

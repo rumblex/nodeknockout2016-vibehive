@@ -12,7 +12,7 @@ import ReduxModal from 'react-redux-modal'
 var requireLogin = (nextState, replace, next) => {
   //check if user is logged in
   if(!firebase.auth().currentUser) {
-    replace('/login')
+    replace('/app/login')
   }
   next();
 };
@@ -20,7 +20,7 @@ var requireLogin = (nextState, replace, next) => {
 //if logged in
 var redirectLoggedIn = (nextState, replace, next) => {
   if(firebase.auth().currentUser) {
-    replace('/addactivity')
+    replace('app/addactivity')
   }
   next();
 };

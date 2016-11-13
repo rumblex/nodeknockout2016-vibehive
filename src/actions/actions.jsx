@@ -119,9 +119,10 @@ export var startDeleteVibeKey = (vibeKey) => {
 	}
 }
 
-export var startAddVibe = (name, location, time, image, tags = [0: "outdoor", 1:"music"]) => {
+export var startAddVibe = (name, location, time, image, tags = []) => {
 	return(dispatch, getState) => {
 		//since we need a user ID
+		debugger
 		var user = getState().auth;
 		var vibe = {
 			name,
@@ -267,24 +268,31 @@ export var startLogout = () => {
 //chat actions
 
 //add a chat message to the vibe's chatroom
-export var startAddChat = (message, vibe) => {
+export var startAddChatMessage = (messageText, timestamp, vibe) => {
 	return(dispatch, getState) => {
 		//since we need a user ID
 		var user = getState().auth;
-		var vibe = {
-			name,
-			location,
-			time
+		var message = {
+			user: user.uid,
+			messageText: messageText,
+			timestamp: timestamp,
 		}
-		var vibeKey = firebaseRef.child('vibes').push().key;
-
-		var vibeFanout = {};
-
-		vibeFanout[`/vibes/${vibeKey}`] = vibe;
-		vibeFanout[`/user-vibes/${user.uid}/${vibeKey}`] = vibe;
-
-		//run fanout
-		return firebaseRef.update(vibeFanout)
+		chatRef = firebaseRef.child(`/chats/${vibe.id}`).push(message);
+		chatRef.then(() => {
+			//add the message to local state
+		 dispatch(addChatMessage({
+	        ...message,
+	        id: chatRef.key
+	      }));
+		});
 
 	}
+}
+
+//add the chat message locally
+export var addChatMessage = (message) => {
+    return {
+        type: 'ADD_MESSAGE',
+        message
+      }
 }

@@ -6,9 +6,15 @@ import SearchBox from 'SearchBox'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import {geoFire} from 'src/firebase/'
+import TagCategoriesOverlay from 'TagCategoriesOverlay';
+import {modal} from 'react-redux-modal'
+import { hashHistory } from 'react-router'
 
 
 export class ActivityForm extends Component {
+  componentWillMount() {
+    this.props.isPreloaded == "NOT_LOADED" ? hashHistory.push('/') : null;
+  }
   static propTypes = {
     placeholder: React.PropTypes.string,
     onPlacesChanged: React.PropTypes.func
@@ -42,6 +48,22 @@ export class ActivityForm extends Component {
         file: file,
     });
   }
+
+  //open the tagging vibe overlay
+  openTagModal(vibeName, locArr, vibeTime, image, tags){
+      modal.add(TagCategoriesOverlay, {
+        title: '',
+        size: 'medium', // large, medium or small,
+        closeOnOutsideClick: true, // (optional) Switch to true if you want to close the modal by clicking outside of it,
+        hideTitleBar: true, // (optional) Switch to true if do not want the default title bar and close button,
+        hideCloseButton: true, // (optional) if you don't wanna show the top right close button
+        //.. all what you put in here you will get access in the modal props ;)
+        vibeName,
+        locArr,
+        vibeTime,
+        image,
+      });
+  }
   submitActivity(Event) {
     Event.preventDefault();
     //grab image and hold
@@ -62,11 +84,7 @@ export class ActivityForm extends Component {
       locArr = [loc.lat, loc.lng];
 
       if(vibeName.length !== 0 && locArr.length !== 0 && vibeTime.length !== 0 && image !== null) {
-        this.refs.vibeName.value = '';
-        this.refs.vibeLocation.value = '';
-        this.refs.vibeTime.value = '';
-        var tags = [0: "outdoor", 1:"music"];
-        dispatch(actions.startAddVibe(vibeName, locArr, vibeTime, image, tags));
+        this.openTagModal(vibeName, locArr, vibeTime, image);
       }
       //tag image and upload with activity
     })
@@ -92,7 +110,7 @@ export class ActivityForm extends Component {
           <label>TIME:</label>
           <input type="datetime" ref="vibeTime"/>
           <input ref="file" type="file" name="file" onChange={this.handleImage} className="button upload-file"/>
-          <input type="submit" className="button" value="CREATE VIBE"/>
+          <input type="submit" className="button" value="NEXT"/>
         </form>
       </div>
       </div>
@@ -101,4 +119,6 @@ export class ActivityForm extends Component {
 
 }
 
-export default connect()(ActivityForm);
+export default connect((state) => {
+  return {isPreloaded: state.isPreloaded}
+})(ActivityForm);
