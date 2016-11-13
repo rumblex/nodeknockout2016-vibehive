@@ -88,7 +88,7 @@ export var vibesReducer = (state = [], action) => {
 		case 'ADD_VIBE':
 		return [
 			...state,
-			action.activity
+			action.vibe
 			];
 		case 'REMOVE_VIBE':
 			return state.filter((activity) => {

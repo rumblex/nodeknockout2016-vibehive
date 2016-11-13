@@ -84,14 +84,14 @@ export var startLoadVibes = (userLocation) => {
 			//get vibe data
 			console.log('close vibe key', key);
 			return firebaseRef.child(`vibes/${key}`).once('value').then((snapshot) => {
-				console.log(snapshot.val());
+				dispatch(addVibe({
+					...snapshot.val(),
+					key
+				}));
+			});
 			})
-
-		},
-		(error) => console.log(error)),
-		{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-	};
-}
+		}
+};
 
 export var addVibe = (vibe) => {
 	return {
