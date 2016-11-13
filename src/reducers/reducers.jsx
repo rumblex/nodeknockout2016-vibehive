@@ -26,7 +26,7 @@ export var activeCategoriesReducer = (state = [], action) => {
 	}
 }
 
-export authReducer = (state = {}, action) {
+export var authReducer = (state = {}, action) => {
 	switch(action.type) {
 		case 'LOGIN':
 			return {uid: action.uid}
