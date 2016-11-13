@@ -2,6 +2,8 @@ import React , {Component} from 'react'
 import {connect} from 'react-redux'
 import * as actions from 'actions'
 import HiveApi from 'HiveApi'
+import SearchBox from 'SearchBox'
+
 export class ActivityForm extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +53,7 @@ export class ActivityForm extends Component {
           <label>VIBE NAME:</label>
           <input type="text" ref="vibeName" />
           <label>LOCATION: </label>
-          <input type="text" ref="vibeLocation"/>
+          <SearchBox/>
           <label>TIME:</label>
           <input type="datetime" ref="vibeTime"/>
           <input ref="file" type="file" name="file" onChange={this.handleImage} className="button upload-file"/>

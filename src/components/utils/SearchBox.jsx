@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import ReactDOM from 'react-dom'
 
 
 export default class SearchBox extends Component {
@@ -27,5 +27,4 @@ export default class SearchBox extends Component {
   componentWillUnmount() {
     //this.searchBox.removeListener('places_changed', this.onPlacesChanged);
   }
-
-export default connect()(SearchBox)
+}
