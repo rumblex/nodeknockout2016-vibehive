@@ -83,7 +83,10 @@ export var startLoadVibes = (userLocation) => {
 		results.on('key_entered', (key, location) => {
 			//get vibe data
 			console.log('close vibe key', key);
-			
+			return firebaseRef.child(`vibes/${key}`).once('value').then((snapshot) => {
+				console.log(snapshot.val());
+			})
+
 		},
 		(error) => console.log(error)),
 		{enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
