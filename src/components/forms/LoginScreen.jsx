@@ -36,11 +36,10 @@ export class LoginScreen extends Component {
       <div className="login-screen small-centered small-12 columns large-centered">
         <p className="login-text"> SIGN UP </p>
         <p className="login-text"> TO CONNECT </p>
-        <button className="button facebook-button" onClick={this.fbLogin}>FACEBOOK</button>
-        <button className="button twitter-button" onClick={this.twLogin}>TWITTER</button>
-        <button className="button github-button" onClick={this.gitLogin}>GITHUB</button>
-        <button className="button google-button" onClick={this.gLogin}>GOOGLE</button>
-        <button className="button hollow logout-button" onClick={this.onLogout}>LOGOUT</button>
+        <button className="button yellow-button facebook-button" onClick={this.fbLogin}>FACEBOOK</button>
+        <button className="button yellow-button twitter-button" onClick={this.twLogin}>TWITTER</button>
+        <button className="button yellow-button github-button" onClick={this.gitLogin}>GITHUB</button>
+        <button className="button yellow-button hollow logout-button" onClick={this.onLogout}>LOGOUT</button>
       </div>
     )
   }
