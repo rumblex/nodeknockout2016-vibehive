@@ -1,24 +1,31 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import CategoryGrid from 'CategoryGrid';
-import { startLoadCategories } from 'actions'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import CategoryGrid from 'CategoryGrid'
+import * as actions from 'actions'
 const MAX_ACTIVE = 5;
 
 export class CategoriesScreen extends Component {
 	componentDidMount() {
+		var {dispatch, activeCategories} = this.props;
+		dispatch(actions.startAuth());
 		console.log("FETCHING");
-		this.props.dispatch(startLoadCategories());
+		dispatch(actions.startLoadCategories());
 	}
 	    //is this icon clickable?
 	continueEnabled(){
-		let length = this.props.activeCategories.length;
-		console.log(this.props.activeCategories.length);
+<<<<<<< HEAD
+		var {dispatch, activeCategories} = this.props;
+		let length = activeCategories.length;
+		console.log(activeCategories.length);
 		console.log(length < MAX_ACTIVE || length > 0);
+=======
+		let length = this.props.activeCategories.length;
+>>>>>>> b4c9a039edcd8256135aedead0a5298907e0bf4e
 	    return length <= MAX_ACTIVE && length > 0 ;
 	}
 
    render() {
-   	var renderContinue = () => 
+   	var renderContinue = () =>
      { //if empty show message
       if(this.continueEnabled()){
       	return(
@@ -33,34 +40,21 @@ export class CategoriesScreen extends Component {
 
     return (
       <div className='main-container'>
-<<<<<<< HEAD
-      <div className='row'>
-      	<div className='small-10 small-centered columns'>
-      	Pick Your Five Vibes
-      	</div>
-      </div>
-      <div className="row">
-      <div className='small-10 small-centered columns'>
-      	<CategoryGrid />
-      </div>
-      </div>
-=======
 	      <div className='row'>
-	      	<div className='small-8 small-centered columns'>
+	      	<div className='small-10 small-centered columns'>
 	      	Choose Up To Five Vibes
 	      	</div>
 	      </div>
 	      <div className="row">
-		      <div className='small-8 small-centered columns'>
+		      <div className='small-11 small-centered columns'>
 		      	<CategoryGrid />
 		      </div>
 	      </div>
 	      <div className="row">
-			<div className='small-8 small-centered columns'>
+			<div className="continue small-10 small-centered columns">
 				{renderContinue()}
 			</div>
 	      </div>
->>>>>>> a35feadad6845be293dd2ae470eb38412618064a
       </div>
     )
   }

@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import CategoryGrid from 'CategoryGrid';
-import { startLoadCategories } from 'actions'
-import { ModalManager } from 'react-dynamic-modal';
-// import { ModalOverlayScreen } from 'ModalOverlayScreen';
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import CategoryGrid from 'CategoryGrid'
+import * as actions from 'actions'
 const MAX_ACTIVE = 5;
 
 export class CategoriesScreen extends Component {
 	componentDidMount() {
+		var {dispatch, activeCategories} = this.props;
+		dispatch(actions.startAuth());
 		console.log("FETCHING");
-		this.props.dispatch(startLoadCategories());
+		dispatch(actions.startLoadCategories());
 	}
 	    //is this icon clickable?
 	continueEnabled(){

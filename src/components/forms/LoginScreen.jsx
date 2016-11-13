@@ -40,6 +40,7 @@ export class LoginScreen extends Component {
         <button className="button twitter-button" onClick={this.twLogin}>TWITTER</button>
         <button className="button github-button" onClick={this.gitLogin}>GITHUB</button>
         <button className="button google-button" onClick={this.gLogin}>GOOGLE</button>
+        <button className="button hollow logout-button" onClick={this.onLogout}>LOGOUT</button>
       </div>
     )
   }

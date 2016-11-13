@@ -70,14 +70,17 @@ export var addVibe = (vibe) => {
 
 export var startAddVibe = (name, location, time, image) => {
 	return(dispatch, getState) => {
+		//since we need a user ID
+		var user = getState().auth;
+
+
 		var vibe = {
 			name,
 			location,
-			time
+			time,
+			vibeOwner: uid,
 		}
-
 		var vibeRef = firebaseRef.child('vibes').push(vibe);
-
 		return vibeRef.then(()=> {
 			dispatch(addVibe({
 				...vibe,
@@ -85,20 +88,59 @@ export var startAddVibe = (name, location, time, image) => {
 			}));
 			//TODO trigger image upload here
 			var uploadTask = storageRef.child(`${vibeRef.key}.png`).put(image);
+			//lets associate a user with an activity
+			var userRef = firebaseRef.child(`users/${user.fbKey}/vibes`).push(vibeRef.key);
+			userRef.then(() => {
+				console.log('pushed user vibe assoc');
+			});
 		})
 	}
 }
 
 
-export var login = (uid) => {
+export var login = (user) => {
 	return {
 		type: 'LOGIN',
-		uid
+		user
 	};
 }
 
+export var awaitLogin = (user) => {
+	return {
+		type: 'AWAITING_LOGIN',
+		user
+	};
+}
+
+
+export var startAuth = () => {
+	return(dispatch, getState) => {
+		firebase.auth().onAuthStateChanged(function(user) {
+		  if (user) {
+				console.log('user', user);
+				//add user to firebase
+				var userRef = firebaseRef.child('users').push({
+					uid: user.uid,
+					isAnon: user.isAnonymous
+				});
+				userRef.then(() => {
+					dispatch(awaitLogin({
+						...user,
+						fbKey: userRef.key
+					}));
+				});
+		  } else {
+		    // User is signed out.
+		    // ...
+				dispatch(logout());
+		  }
+		  // ...
+		});
+	}
+}
+
 export var startLogin = (provider) => {
-	return(dispatch, state) => {
+	return(dispatch, getState) => {
 		var getProvider = (provider) => {
 			switch (provider) {
 				case 'google':
@@ -114,9 +156,14 @@ export var startLogin = (provider) => {
 			}
 		}
 
-		return firebase.auth().signInWithPopup(getProvider(provider)).then((result) => {
-			console.log('auth worked', result);
-			dispatch(login(result.user.uid));
+		return firebase.auth().linkWithPopup(getProvider(provider)).then((result) => {
+			var user = getState.auth;
+				dispatch(login({
+					...user,
+					...result
+				})); 
+
+
 		}, (error) => {
 			console.log('auth failed', error);
 		});
