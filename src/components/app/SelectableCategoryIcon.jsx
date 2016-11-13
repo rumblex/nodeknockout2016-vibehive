@@ -4,7 +4,7 @@ import { removeActiveCategory, addActiveCategory } from 'actions'
 const MAX_ACTIVE = 5;
 
 export class SelectableCategoryIcon extends Component {
-  
+
   getIconPath(){
     let colour = this.isActive()? 'yellow' : 'white'
     return '/category_icons/ic_categories_hexagon_'
@@ -45,7 +45,7 @@ export class SelectableCategoryIcon extends Component {
     let futureMatch = nextProps.currentlyActive.find((category) => {
       return category == self.props.category;
     });
-    
+
     return currentMatch != futureMatch;
   }
 
@@ -57,13 +57,13 @@ export class SelectableCategoryIcon extends Component {
     //offset is for the honeycomb styling
     if(this.props.offset){
       return (
-        <div className="column honeycomb">
+        <div className="columns small-2 honeycomb">
           <img src={large} onClick={this.toggleActive.bind(this)}/>
         </div>
       );
     }else{
       return (
-        <div className="column">
+        <div className="columns small-2">
           <img src={large} onClick={this.toggleActive.bind(this)}/>
         </div>
       );

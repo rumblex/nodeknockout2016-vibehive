@@ -14,7 +14,7 @@ export class CategoriesScreen extends Component {
 	componentWillMount() {
 		this.props.isPreloaded == "NOT_LOADED" ? hashHistory.push('/') : null;
 	}
-    
+
 	// componentDidMount() {
 	// 	var {dispatch, activeCategories} = this.props;
 	// 	dispatch(actions.startAuth());
@@ -54,7 +54,7 @@ export class CategoriesScreen extends Component {
      { //if empty show message
       if(this.continueEnabled()){
       	return(
-			<button type="button" className="continue-button button" >CONTINUE</button>
+			<button type="button" className="continue-button button">CONTINUE</button>
       	);
       }else{
       	return(
@@ -66,8 +66,8 @@ export class CategoriesScreen extends Component {
     return (
       <div className='main-container'>
 	      <div className='row'>
-	      	<div className='small-12 small-centered columns category-label'>
-	      	Choose Up To Five Vibes
+	      	<div className='small-12 small-centered columns'>
+	      	<p className="cat-choose">CHOOSE UP TO FIVE VIBES</p>
 	      	</div>
 	      </div>
 	      <div className="row">
@@ -80,7 +80,7 @@ export class CategoriesScreen extends Component {
 		      </div>
 	      </div>
 	      <div className="row">
-			<div className="continue small-10 small-centered columns">
+			<div className="continue small-10 medium-8 large-8 small-centered columns">
 				{renderContinue()}
 			</div>
 	      </div>
