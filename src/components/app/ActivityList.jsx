@@ -1,8 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import ActivityItem from 'ActivityItem'
+import * as actions from 'actions'
 
 export class ActivityList extends Component {
+  constructor(props) {
+    super(props);
+  }
+  ComponentDidMount() {
+    
+  }
   render(){
     var renderActivities = () =>{
       var acts =  [
