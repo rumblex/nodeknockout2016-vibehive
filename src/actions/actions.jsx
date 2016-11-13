@@ -136,6 +136,7 @@ export var startAddVibe = (name, location, locArr, time, image, tags = []) => {
 
 		tags.forEach((cat) => {
 			vibeFanout[`/tag-vibes/${cat}/${vibeKey}`] = vibeKey;
+			vibeFanout[`/vibe-tags/${vibeKey}/${cat}`] = cat;
 		})
 
 		//STORE
