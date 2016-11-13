@@ -47,14 +47,24 @@ export var loadVibes = (vibes) => {
 }
 
 export var StartLoadVibes = () => {
-	//get list of user activities
-
-
-	//get activities that are close enough
-
-	//that are in the user activities
-
 	return (dispatch, getState) => {
+
+		//get list of user categories
+		var userCategories = getState.activeCategories;
+
+		//get activities that are close enough
+		//find user location
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPostion((position) => {
+				var pos = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
+			})
+		}
+
+		//that are in the user activities
+
 		firebaseRef.child('vibes').once('value').then((snapshot) => {
 			dispatch(loadActivities(snapshot.val()));
 		});
