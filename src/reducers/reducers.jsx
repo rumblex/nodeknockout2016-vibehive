@@ -26,7 +26,16 @@ export var activeCategoriesReducer = (state = [], action) => {
 	}
 }
 
-
+export authReducer = (state = {}, action) {
+	switch(action.type) {
+		case 'LOGIN':
+			return {uid: action.uid}
+		case 'LOGOUT':
+			return {};
+		default:
+			return state;
+	};
+}
 export var vibesReducer = (state = [], action) => {
 	switch(action.type) {
 		case 'LOAD_VIBES':

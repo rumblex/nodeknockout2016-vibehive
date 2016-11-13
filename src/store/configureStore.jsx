@@ -3,14 +3,15 @@ import thunk from 'redux-thunk';
 import {reducer as burgerMenu} from 'redux-burger-menu';
 
 //import reducers here
-import {categoriesReducer, activeCategoriesReducer, vibesReducer} from 'reducers';
+import {categoriesReducer, activeCategoriesReducer, vibesReducer, authReducer} from 'reducers';
 export var configure = (initialState = {}) => {
 
   var reducer = redux.combineReducers({
     categories: categoriesReducer,
     activeCategories: activeCategoriesReducer,
     burgerMenu: burgerMenu,
-    vibes: vibesReducer
+    vibes: vibesReducer,
+    auth: authReducer
   });
 
   var store = redux.createStore(reducer, initialState,redux.compose(
