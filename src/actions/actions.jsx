@@ -86,7 +86,7 @@ export var startLoadVibes = (userLocation) => {
 			return firebaseRef.child(`vibes/${key}`).once('value').then((snapshot) => {
 				dispatch(addVibe({
 					...snapshot.val(),
-					key
+					id: key
 				}));
 			});
 			})

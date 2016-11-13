@@ -1,19 +1,29 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {storageRef} from 'firebase'
+import {storageRef} from 'src/firebase/'
 
 export class ActivityItem extends Component {
-  render() {
-    var {dispatch, time, key, location, name} = this.props;
-    var imagelink  = () => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      link: ''
+    };
+  }
+  componentDidMount(){
+    var {dispatch, time, id, name} = this.props;
       //build  Image link
-      storageRef.child(`${key}.png`).getDownloadURL().then((url) => {
+      storageRef.child(`${id}.png`).getDownloadURL().then((url) => {
         console.log('url', url);
-       return url;
+        this.setState({
+          link: url
+        });
       }).catch((error) => {
         console.log(error);
       });
-    }
+  }
+
+  render() {
+    var {dispatch, time, id, name} = this.props;
     return (
       <div className="activity-item">
           <div>
@@ -24,7 +34,7 @@ export class ActivityItem extends Component {
               <span className="activity-title">{name}</span>
             </div>
             <div>
-              <span  className="locale-title">{location}</span>
+              <span  className="locale-title">Location</span>
             </div>
           </div>
           <div className="row">
@@ -36,7 +46,7 @@ export class ActivityItem extends Component {
          </div>
        </div>
        <div className="row">
-         <img src={imagelink()} className="activity-image"/>
+         <img src={this.state.link} className="activity-image"/>
        </div>
       </div>
     )
