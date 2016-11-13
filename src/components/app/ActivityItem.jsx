@@ -5,8 +5,15 @@ import {storageRef} from 'firebase'
 export class ActivityItem extends Component {
   render() {
     var {dispatch, time, key, location, name} = this.props;
-    //build  Image link
-    
+    var imagelink  = () => {
+      //build  Image link
+      storageRef.child(`${key}.png`).getDownloadURL().then((url) => {
+        console.log('url', url);
+       return url;
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
     return (
       <div className="activity-item">
           <div>
@@ -29,7 +36,7 @@ export class ActivityItem extends Component {
          </div>
        </div>
        <div className="row">
-         <img src="images/" className="activity-image"/>
+         <img src={imagelink()} className="activity-image"/>
        </div>
       </div>
     )
