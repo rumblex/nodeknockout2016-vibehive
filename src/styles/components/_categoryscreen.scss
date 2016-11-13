@@ -15,13 +15,17 @@
 -webkit-transform:  translate(40%, 20%);
 transform: translate(40%, 20%);
 }
-
-.continue {
-  margin-top: .7rem;
-  color: #fce600
+.cat-choose {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+  letter-spacing: .2rem;
 }
 
+
 .continue-button {
-  background-color: #fce600;
+  background-color: $yellow;
   color: #404241;
+  letter-spacing: .2rem;
+  font-weight: bold;
 }
