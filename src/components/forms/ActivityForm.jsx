@@ -4,6 +4,8 @@ import * as actions from 'actions'
 import HiveApi from 'HiveApi'
 import SearchBox from 'SearchBox'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
+import {geoFire} from 'src/firebase/'
 
 
 export class ActivityForm extends Component {
@@ -42,8 +44,6 @@ export class ActivityForm extends Component {
   }
   submitActivity(Event) {
     Event.preventDefault();
-    console.log('refs',this.refs);
-    console.log('search ref', this.refs.vibeLocation.value);
     //grab image and hold
     //persist activity\
     var {dispatch} = this.props;
@@ -51,6 +51,16 @@ export class ActivityForm extends Component {
     var vibeTime = this.refs.vibeTime.value;
     var image = this.state.file;
     var vibeLocation = this.refs.vibeLocation.value;
+
+    //lets geocode our address
+    var address = `https://maps.googleapis.com/maps/api/geocode/json?address=${vibeLocation}&key=AIzaSyD8oJEU01e30XplGKVXpxfPMHvP2NrittE`;
+    axios.get(address).then((response) => {
+      console.log('res',response.data.results[0].geometry.location);
+      //get Geofire to keep our location
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 
     if(vibeName.length !== 0 && vibeLocation.length !== 0 && vibeTime.length !== 0 && image !== null) {
       this.refs.vibeName.value = '';
