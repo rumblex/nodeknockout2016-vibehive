@@ -5,6 +5,7 @@ import CategoriesScreen from 'CategoriesScreen'
 import ActivitiesScreen from 'ActivitiesScreen'
 import LoginScreen from 'LoginScreen'
 import ActivityForm from 'ActivityForm';
+import firebase from 'firebase';
 //middleware for auth
 var requireLogin = (nextState, replace, next) => {
   //check if user is logged in
@@ -17,7 +18,7 @@ var requireLogin = (nextState, replace, next) => {
 //if logged in
 var redirectLoggedIn = (nextState, replace, next) => {
   if(firebase.auth().currentUser) {
-    replace('/')
+    replace('/addactivity')
   }
   next();
 };
@@ -32,7 +33,7 @@ export default (
       <Route path="/categories" component={CategoriesScreen} />
       <Route path="/activities" component={ActivitiesScreen}/>
       <Route path="/login" component={LoginScreen}/>
-      <Route path="/addactivity" component={ActivityForm}/>
+      <Route path="/addactivity" component={ActivityForm} onEnter={requireLogin}/>
     </Route>
   </Router>
 )
