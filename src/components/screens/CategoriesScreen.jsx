@@ -44,7 +44,7 @@ export class CategoriesScreen extends Component {
     return (
       <div className='main-container'>
 	      <div className='row'>
-	      	<div className='small-10 small-centered columns'>
+	      	<div className='small-12 small-centered columns category-label'>
 	      	Choose Up To Five Vibes
 	      	</div>
 	      </div>
