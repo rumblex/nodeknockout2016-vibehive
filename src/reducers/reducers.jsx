@@ -30,7 +30,7 @@ export var authReducer = (state = {}, action) => {
 	switch(action.type) {
 		case 'AWAITING_LOGIN':
 			return {
-				...action
+				...action.user
 			};
 		case 'LOGIN':
 			return action.user;
