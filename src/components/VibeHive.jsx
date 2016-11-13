@@ -10,13 +10,15 @@ export class VibeHive extends Component {
     return (
       <div className="application">
               <AppMenu className="appmenu">
-                <RadiumLink className="menu-item" to="/app/categories">Select Categories</RadiumLink>
-                <RadiumLink className="menu-item" to="/app/activities">Vibes</RadiumLink>
-                <RadiumLink className="menu-item" to="/app/addactivity">Create Vibe</RadiumLink>
-                // <RadiumLink className="menu-item" to="/categories">My Hive</RadiumLink>
-                // <RadiumLink className="menu-item" to="/categories">Logout</RadiumLink>
+                <RadiumLink className="menu-item white-menu" to="/app/categories">Select Categories</RadiumLink>
+                <RadiumLink className="menu-item white-menu" to="/app/activities">Vibes</RadiumLink>
+                <RadiumLink className="menu-item white-menu" to="/app/addactivity">Create Vibe</RadiumLink>
+           
               </AppMenu>
             <div className="top-bar fixed">
+         
+             <img className="bar-logo" src={require("../images/ic_vibe_hive_72x72.png")} />
+   
             </div>
             {this.props.children}
       </div>

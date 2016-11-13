@@ -35,6 +35,11 @@ export class CategoriesScreen extends Component {
 	removeActiveCategory(category) {
     	this.props.dispatch(actions.removeActiveCategory(category)) 
     }
+
+    goToVibes(){
+    	console.log("GO")
+    	hashHistory.push('/app/activities');
+    }
   
     //HOW TO OPEN A MODAL:
 	// openModal(){
@@ -54,11 +59,11 @@ export class CategoriesScreen extends Component {
      { //if empty show message
       if(this.continueEnabled()){
       	return(
-			<button type="button" className="continue-button button">CONTINUE</button>
+			<button type="button" className="continue-button button" onClick={this.goToVibes.bind(this)}>SEE MATCHING VIBES</button>
       	);
       }else{
       	return(
-			<button type="button" className="continue-button button" disabled>CONTINUE</button>
+			<button type="button" className="continue-button button" disabled>SEE MATCHING VIBES</button>
 		);
       }
     }
