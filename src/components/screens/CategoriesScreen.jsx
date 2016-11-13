@@ -1,18 +1,21 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import CategoryGrid from 'CategoryGrid';
-import { startLoadCategories } from 'actions'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import CategoryGrid from 'CategoryGrid'
+import * as actions from 'actions'
 const MAX_ACTIVE = 5;
 
 export class CategoriesScreen extends Component {
 	componentDidMount() {
+		var {dispatch, activeCategories} = this.props;
+		dispatch(actions.startAuth());
 		console.log("FETCHING");
-		this.props.dispatch(startLoadCategories());
+		dispatch(actions.startLoadCategories());
 	}
 	    //is this icon clickable?
 	continueEnabled(){
-		let length = this.props.activeCategories.length;
-		console.log(this.props.activeCategories.length);
+		var {dispatch, activeCategories} = this.props;
+		let length = activeCategories.length;
+		console.log(activeCategories.length);
 		console.log(length < MAX_ACTIVE || length > 0);
 	    return length <= MAX_ACTIVE && length > 0 ;
 	}

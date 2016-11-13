@@ -26,16 +26,24 @@ export var activeCategoriesReducer = (state = [], action) => {
 	}
 }
 
-export authReducer = (state = {}, action) {
+export var authReducer = (state = {}, action) => {
 	switch(action.type) {
+		case 'AWAITING_LOGIN':
+			return {
+				...action
+			};
 		case 'LOGIN':
-			return {uid: action.uid}
+			return action.user;
 		case 'LOGOUT':
-			return {};
+			return {
+				uid: null,
+				fbKey: null
+			};
 		default:
 			return state;
 	};
 }
+
 export var vibesReducer = (state = [], action) => {
 	switch(action.type) {
 		case 'LOAD_VIBES':
