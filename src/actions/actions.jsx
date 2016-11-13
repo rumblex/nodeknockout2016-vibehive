@@ -126,7 +126,10 @@ export var startAddVibe = (name, location, time, image, tags = [0: "outdoor", 1:
 
 		//STORE
 		//TODO trigger image upload here
- 		var uploadTask = storageRef.child(`${vibeRef.key}.png`).put(image);
+ 		var uploadTask = storageRef.child(`${vibeKey}.png`).put(image);
+		uploadTask.then(() => {
+			console.log('file uploaded');
+		})
 		//STORE LOCATION
 		geoFire.set(vibeKey, location).then(
 			() => {
